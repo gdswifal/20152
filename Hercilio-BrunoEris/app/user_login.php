@@ -1,8 +1,5 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    include_once("controllers/UserLogin.php");
-    UserLogin($_POST['email'], $_POST['password']);
-}
+    include_once("controllers/login.php");
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +16,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           <input type="email" name="email" placeholder="Usuário" required autofocus>
           <input type="password" name="password" placeholder="Senha" required>
           <button type="submit">Entrar</button>
-          <a href="recover.php" title="Esqueci a senha">Esqueci a senha</a>
+          <a href="user_recover.php" title="Esqueci a senha">Esqueci a senha</a>
       </form>
     </div>
-    
+
     <script src="assets/js/jquery-1.11.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
   </body>
