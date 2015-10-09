@@ -7,6 +7,14 @@ function UserLogin($name, $email, $telephone, $pass, $pass_confirm){
         echo "Senhas não conferem, tente novamente.";
         return 0;
     }
+    elseif(strlen($pass) < 6 || strlen($pass) > 45) {
+        echo "A senha precisa ter entre 6 e 45 dígitos.";
+        return 0;
+    }
+    elseif($pass = "") {
+        echo "Uma senha precisa ser digitada.";
+        return 0;
+    }
     else{
         global $conn;
         $stmt = $conn->prepare("INSERT INTO users (user_name, user_mail, user_telephone, user_password) VALUES (?, ?, ?, ?)");
