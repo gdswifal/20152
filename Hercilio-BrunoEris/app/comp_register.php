@@ -1,10 +1,4 @@
-<?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    include_once("controllers/register.php");
-    UserLogin($_POST['name'], $_POST['email'], $_POST['telephone'], $_POST['password'], $_POST['password_confirm']);
-}
-?>
-
+<?php include_once("controllers/config.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="container">
       <h1>Registre-se</h1>
       <form class="form-signin" method="post" action="">
-          <input type="text" maxlength="255" name="name" placeholder="Nome da empresa" required autofocus>
+          <input type="text" maxlength="255" name="compname" placeholder="Nome da empresa" required autofocus>
           <input type="text" maxlength="14" name="cnpj" placeholder="CNPJ" required>
           <input id="latInput" type="hidden" name="lat" value="">
           <input id="lngInput" type="hidden" name="lng" value="">
