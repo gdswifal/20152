@@ -1,4 +1,4 @@
-<?php include_once("controllers/config.php"); ?>
+<?php include_once("controllers/register.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>

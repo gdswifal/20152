@@ -12,3 +12,7 @@ if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
     $conn->close(); //Close connection
 }
+if (!$conn->set_charset("utf8")) {
+    printf("Erro ao configurar character set to utf8: %s\n", $conn->error);
+    exit();
+}
