@@ -4,7 +4,7 @@ class User extends Manipulator{
     public $_email;
     public $_telephone;
     public $_password;
-    public $_validations;
+    public $_validations = array(false,false,false,false);
 
     public function __construct($name, $email, $telephone, $password){
         $this->_name = $name;

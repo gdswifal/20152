@@ -2,66 +2,79 @@
 Class Manipulator{
     public function checkPass($password, $confirmation){
         if($password != $confirmation){
-            echo "A confirmação de senha não confere com a senha digitada.";
-            $this->_validations[0] = false;
+            echo "Confirmação de senha não confere com a senha digitada.";
         }elseif(strlen($password) > 46 || strlen($password) < 5){
-            echo "A senha precisa ter entre 6 e 45 dígitos. Sua senha possui ".strlen($password)." dígitos.";
-            $this->_validations[0] = false;
+            echo "A senha deve ter no mínimo seis dígitos. Sua senha possui ".strlen($password)." dígitos.";
         }else{
             $this->_validations[0] = true;
             return true;
         }
 	}
 
-    public function checkPhone($telephone){
-        $info = "Telefone digitado: $telephone (".strlen($telephone)." dígitos).";
-        if(!is_numeric($telephone)){
-            echo "Telefone inválido. Digite apenas números. $info";
-            $this->_validations[1] = false;
+    public function checkPhone($telephone, $autorization){
+        if($autorization[0] === false){
+            return false;
         }
-        elseif(strlen($telephone) < 10 || strlen($telephone) > 11){
-            echo "O número do telefone precisa ter entre 10 e 11 dígitos (com DDD). $info";
-            $this->_validations[1] = false;
-        }else{
-            $this->_validations[1] = true;
-            return true;
-        }
-	}
-
-    public function checkEmail($email){
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "O e-mail digitado ($email) foi considerado inválido.";
-            $this->_validations[2] = false;
-        }else{
-            $this->_validations[2] = true;
-            return true;
+        else{
+            if(!is_numeric($telephone)){
+                echo "Telefone deve conter apenas números.";
+            }
+            elseif(strlen($telephone) < 10 || strlen($telephone) > 11){
+                echo "Telefone precisa ter entre 10 e 11 dígitos (com DDD).";
+            }else{
+                $this->_validations[1] = true;
+                return true;
+            }
         }
 	}
 
-    public function checkName($name){
-        if (!preg_match("/^[a-zA-ZãÃáÁàÀêÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇºª ]+$/",$name)) {
-            echo "O nome deve conter apenas letras e espaços.";
-            $this->_validations[3] = false;
-        }else{
-            $this->_validations[3] = true;
-            return true;
+    public function checkEmail($email, $autorization){
+        if($autorization[0] === false || $autorization[1] === false){
+            return false;
+        }
+        else{
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo "O e-mail digitado ($email) foi considerado inválido.";
+            }else{
+                $this->_validations[2] = true;
+                return true;
+            }
         }
 	}
 
-    public function checkCNPJ($cnpj){
-        if (strlen($cnpj) != 14) {
-            echo "O CNPJ deve conter 14 caracteres. (".strlen($cnpj)." digitados).";
-            $this->_validations[4] = false;
-        }elseif (!is_numeric($cnpj)) {
-            echo "O CNPJ deve conter apenas números, sem caracteres especiais.";
-        }else{
-            $this->_validations[4] = true;
-            return true;
+    public function checkName($name, $autorization){
+        if($autorization[0] === false || $autorization[1] === false || $autorization[2] === false){
+            return false;
+        }
+        else{
+            if (!preg_match("/^[a-zA-ZãÃáÁàÀêÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇºª ]+$/",$name)) {
+                echo "O nome deve conter apenas letras e espaços.";
+                $this->_validations[3] = false;
+            }else{
+                $this->_validations[3] = true;
+                return true;
+            }
+        }
+	}
+
+    public function checkCNPJ($cnpj, $autorization){
+        if($autorization[0] === false || $autorization[1] === false || $autorization[2] === false || $autorization[3] === false){
+            return false;
+        }
+        else{
+            if (strlen($cnpj) != 14) {
+                echo "O CNPJ deve conter 14 caracteres. (".strlen($cnpj)." digitados).";
+            }elseif (!is_numeric($cnpj)) {
+                echo "O CNPJ deve conter apenas números, sem caracteres especiais.";
+            }else{
+                $this->_validations[4] = true;
+                return true;
+            }
         }
 	}
 
     public function userCheckValidations($autorization){
-        $info = "Pendência de validação de ";
+        $info = "Falha na validação de";
         if($autorization[0] == false){
             echo "$info senha.";
         }elseif($autorization[1] == false){
@@ -77,7 +90,7 @@ Class Manipulator{
     }
 
     public function companyCheckValidations($autorization){
-        $info = "Pendência de validação de ";
+        $info = "Falha na validação de";
         if($autorization[0] == false){
             echo "$info senha.";
         }elseif($autorization[1] == false){
@@ -87,7 +100,7 @@ Class Manipulator{
         }elseif($autorization[3] == false){
             echo "$info nome.";
         }elseif($autorization[4] == false){
-            echo "$info CPNJ.";
+            echo "$info CNPJ.";
         }
         else{
             $this->_validations = true;
@@ -97,7 +110,6 @@ Class Manipulator{
     public function registerUser($name, $email, $telephone, $password, $autorization){
         if(is_array($autorization)){
             if (in_array(0, $autorization)) {
-                echo "Existem pendências de validação. Função ".__function__." não executada.";
                 return false;
             }
         }
@@ -121,7 +133,6 @@ Class Manipulator{
     public function registerCompany($name, $location, $email, $telephone, $password, $cnpj, $autorization){
         if(is_array($autorization)){
             if (in_array(0, $autorization)) {
-                echo "Existem pendências de validação. Função ".__function__." não executada.";
                 return false;
             }
         }
@@ -177,7 +188,6 @@ Class Manipulator{
             $stmt->bind_result($id, $name, $location, $email, $telephone, $cnpj);
             $stmt->store_result();
             $stmt->fetch();
-            print_r($stmt->error);
             $result = $stmt->num_rows;
             $stmt->close();
             $conn->close();
