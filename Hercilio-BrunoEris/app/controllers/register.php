@@ -8,8 +8,8 @@ spl_autoload_register("autoload");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['username'])){
-        $person = new User($_POST['username'], $_POST['email'], $_POST['telephone'], $_POST['password'], $_POST['password_confirm']);
-        $person->checkPass($person->_password, $person->_passConfirmation);
+        $person = new User($_POST['username'], $_POST['email'], $_POST['telephone'], $_POST['password']);
+        $person->checkPass($person->_password, $_POST['password_confirm']);
         $person->checkPhone($person->_telephone);
         $person->checkEmail($person->_email);
         $person->checkName($person->_name);
@@ -19,8 +19,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['compname'])){
         if($_POST['lat'] != "" && $_POST['lng'] != ""){
             $location = "".$_POST['lat']." ".$_POST['lng'].""; //Pattern GeomFromText('POINT(% %)',0)
-            $company = new Company($_POST['compname'], $location, $_POST['email'], $_POST['telephone'], $_POST['password'], $_POST['password_confirm'], $_POST['cnpj']);
-            $company->checkPass($company->_password, $company->_passConfirmation);
+            $company = new Company($_POST['compname'], $location, $_POST['email'], $_POST['telephone'], $_POST['password'], $_POST['cnpj']);
+            $company->checkPass($company->_password, $_POST['password_confirm']);
             $company->checkPhone($company->_telephone);
             $company->checkEmail($company->_email);
             $company->checkName($company->_name);

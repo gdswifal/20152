@@ -19,9 +19,9 @@
                   </div>
                  <div class="col-md-4 text-center"></div>
                </div>
-                <h1 class="form-signin-heading text-center text-shadow">Pão na Mão</h1>
+                <h1 class="form-signin-heading text-center text-shadow">Pão na Mão <small>Business</small></h1>
                 <form class="form-signin text-center" action="" role="form" method="post">
-                  <input type="email" name="useremail" class="form-control" placeholder="E-mail" required autofocus>
+                  <input type="email" name="compemail" class="form-control" placeholder="E-mail" required autofocus>
                   <input type="password" name="password" class="form-control" placeholder="Senha" required>
                   <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
                   <a class="btn btn-sm btn-link" href="user_recover.php" title="Esqueci a senha">Esqueci a senha</a><br><br>
