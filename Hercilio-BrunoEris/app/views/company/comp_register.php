@@ -1,12 +1,12 @@
-<?php include_once("controllers/register.php"); ?>
+<?php include_once("../../controllers/register.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Pão na Mão</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="assets/css/signup.css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/signup.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="../../assets/plugins/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
     <div class="container">
@@ -57,9 +57,9 @@
       </div>
     </div>
 
-    <script src="assets/js/jquery-1.11.3.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBPlkMMoM8tjnpx5CE_uq0LkWII8Poc0w&callback=initMap"async defer></script>
-    <script src="assets/js/map_signup.js"></script>
+    <script src="../../assets/js/map_signup.js"></script>
   </body>
 </html>
