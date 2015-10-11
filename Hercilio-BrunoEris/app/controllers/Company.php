@@ -6,7 +6,7 @@ class Company extends Manipulator{
     public $_telephone;
     public $_password;
     public $_cnpj;
-    public $_validations;
+    public $_validations = array(false,false,false,false,false,false);
 
     public function __construct($name, $location, $email, $telephone, $password, $cnpj){
         $this->_name = $name;
