@@ -1,12 +1,12 @@
-<?php include_once("controllers/register.php"); ?>
+<?php include_once("../../controllers/register.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>Pão na Mão</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="assets/css/signup.css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/signup.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="../../assets/plugins/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
     <div class="container">
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <script src="assets/js/jquery-1.11.3.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
   </body>
 </html>
