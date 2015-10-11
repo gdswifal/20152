@@ -1,7 +1,4 @@
-<?php
-    include_once("controllers/login.php");
-?>
-
+<?php include_once("controllers/config.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -34,10 +31,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <video autoplay loop poster="assets/img/bg.svg" id="bgvid">
-    <source src="assets/img/videobg.mp4" type="video/mp4">
-    </video> -->
 
     <script src="assets/js/jquery-1.11.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>

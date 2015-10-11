@@ -63,10 +63,3 @@ body#start {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-video#bgvid {
-  position: fixed; right: 0; bottom: 0;
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto; z-index: -100;
-  /*background: url(assets/img/pao.png) no-repeat;*/
-  background-size: cover;
-}
