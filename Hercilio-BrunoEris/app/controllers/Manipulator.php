@@ -73,6 +73,20 @@ Class Manipulator{
         }
 	}
 
+    public function checkAddress($address, $autorization){
+        if($autorization[0] === false || $autorization[1] === false || $autorization[2] === false || $autorization[3] === false || $autorization[4] === false){
+            return false;
+        }
+        else{
+            if (strlen($address) < 5) {
+                echo "O endereço deve conter no mínimo 5 dígitos.";
+            }else{
+                $this->_validations[5] = true;
+                return true;
+            }
+        }
+	}
+
     public function userCheckValidations($autorization){
         $info = "Falha na validação de";
         if($autorization[0] == false){
@@ -101,6 +115,8 @@ Class Manipulator{
             echo "$info nome.";
         }elseif($autorization[4] == false){
             echo "$info CNPJ.";
+        }elseif($autorization[5] == false){
+            echo "$info endereço.";
         }
         else{
             $this->_validations = true;

@@ -34,10 +34,6 @@
               <label for="exampleInputPassword2">Insira novamente sua senha</label>
               <input type="password" class="form-control" name="password_confirm" placeholder="Confirme a Senha" required>
             </div>
-            <div class="form-group">
-              <label for="exampleInputFile">Escolha um arquivo</label>
-              <input type="file" id="exampleInputFile">
-            </div>
             <button type="submit" class="btn btn-default">Cadastrar</button>
           </form>
           <a type="submit" href="user_login.php" class="btn btn-link">Voltar</a>
