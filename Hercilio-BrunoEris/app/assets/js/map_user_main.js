@@ -19,7 +19,7 @@ function initialize() {
 
   function loadPontos() {
     $.ajax({
-      url : "../../assets/js/data-test2.json",
+      url : "../../controllers/JSONCompanies.php",
       dataType : "json",
       success : function(data){
         console.log("Sucesso!");
