@@ -33,7 +33,8 @@ function initialize() {
 
             var marker = new google.maps.Marker({
                 position: myLatlng,
-                map: map
+                map: map,
+                icon: '../../assets/img/coffee-shop2.png'
             });
 
             var conteudo = "<div><b><h4>Padaria: "+val.nome+"</b></h6>"+
@@ -65,7 +66,6 @@ function initialize() {
       },
       error: function(XMLHttpRequest, textStatus, errorThrown){
         console.log("Erro!");
-        console.log(XMLHttpRequest);
         console.log(XMLHttpRequest.responseText);
         console.log(textStatus);
         console.log(errorThrown);
