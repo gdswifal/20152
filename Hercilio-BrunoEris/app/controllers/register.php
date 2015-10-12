@@ -17,9 +17,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $person->registerUser($person->_name, $person->_email, $person->_telephone, $person->_password, $person->_validations);
     }
     if(isset($_POST['compname'])){
-        if($_POST['lat'] != "" && $_POST['lng'] != ""){
-            $location = "".$_POST['lat']." ".$_POST['lng'].""; //Pattern GeomFromText('POINT(% %)',0)
+        if($_POST['lat'] != "" && $_POST['lng'] != "" && $_POST['address'] != ""){
+            $location = "".$_POST['lat']." ".$_POST['lng']."";
             $company = new Company($_POST['compname'], $location, $_POST['email'], $_POST['telephone'], $_POST['password'], $_POST['cnpj'], $_POST['address']);
+            $company->uploadFile($_FILES['image'], $_POST['MAX_FILE_SIZE']);
             $company->checkPass($company->_password, $_POST['password_confirm']);
             $company->checkPhone($company->_telephone, $company->_validations);
             $company->checkEmail($company->_email, $company->_validations);
@@ -27,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $company->checkCNPJ($company->_cnpj, $company->_validations);
             $company->checkAddress($company->_address, $company->_validations);
             $company->companyCheckValidations($company->_validations);
-            $company->registerCompany($company->_name, $company->_location, $company->_email, $company->_telephone, $company->_password, $company->_cnpj, $company->_validations);
+            $company->registerCompany($company->_name, $company->_location, $company->_email, $company->_telephone, $company->_password, $company->_cnpj, $company->_address, $company->_validations);
         }
         else{
             echo "Escolha o local de sua empresa no mapa.";
