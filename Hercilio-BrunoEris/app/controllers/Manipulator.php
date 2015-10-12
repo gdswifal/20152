@@ -73,6 +73,20 @@ Class Manipulator{
         }
 	}
 
+    public function checkAddress($address, $autorization){
+        if($autorization[0] === false || $autorization[1] === false || $autorization[2] === false || $autorization[3] === false || $autorization[4] === false){
+            return false;
+        }
+        else{
+            if (strlen($address) < 5) {
+                echo "O endereço deve conter no mínimo 5 dígitos.";
+            }else{
+                $this->_validations[5] = true;
+                return true;
+            }
+        }
+	}
+
     public function userCheckValidations($autorization){
         $info = "Falha na validação de";
         if($autorization[0] == false){
@@ -101,6 +115,8 @@ Class Manipulator{
             echo "$info nome.";
         }elseif($autorization[4] == false){
             echo "$info CNPJ.";
+        }elseif($autorization[5] == false){
+            echo "$info endereço.";
         }
         else{
             $this->_validations = true;
@@ -173,7 +189,6 @@ Class Manipulator{
                 return 1;
             }
             else{
-                echo "Dados de acesso incorretos.";
                 return 0;
             }
         }
@@ -202,6 +217,30 @@ Class Manipulator{
             }
             else{
                 echo "Dados de acesso incorretos.";
+                return 0;
+            }
+        }
+	}
+
+    public function recoverUser($email){
+        global $conn;
+        if ($stmt = $conn->prepare("SELECT user_id, user_name, user_mail FROM users WHERE user_mail=?")) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->bind_result($id, $name, $email);
+            $stmt->store_result();
+            $stmt->fetch();
+            $result = $stmt->num_rows;
+            $stmt->close();
+            $conn->close();
+
+            if($result == 1){
+                $this->_id = $id;
+                $this->_name = $name;
+                $this->_email = $email;
+                return 1;
+            }
+            else{
                 return 0;
             }
         }

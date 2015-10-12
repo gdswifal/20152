@@ -19,12 +19,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['compname'])){
         if($_POST['lat'] != "" && $_POST['lng'] != ""){
             $location = "".$_POST['lat']." ".$_POST['lng'].""; //Pattern GeomFromText('POINT(% %)',0)
-            $company = new Company($_POST['compname'], $location, $_POST['email'], $_POST['telephone'], $_POST['password'], $_POST['cnpj']);
+            $company = new Company($_POST['compname'], $location, $_POST['email'], $_POST['telephone'], $_POST['password'], $_POST['cnpj'], $_POST['address']);
             $company->checkPass($company->_password, $_POST['password_confirm']);
             $company->checkPhone($company->_telephone, $company->_validations);
             $company->checkEmail($company->_email, $company->_validations);
             $company->checkName($company->_name, $company->_validations);
             $company->checkCNPJ($company->_cnpj, $company->_validations);
+            $company->checkAddress($company->_address, $company->_validations);
             $company->companyCheckValidations($company->_validations);
             $company->registerCompany($company->_name, $company->_location, $company->_email, $company->_telephone, $company->_password, $company->_cnpj, $company->_validations);
         }

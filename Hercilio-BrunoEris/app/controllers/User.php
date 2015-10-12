@@ -1,5 +1,6 @@
 <?php
 class User extends Manipulator{
+    public $_id;
     public $_name;
     public $_email;
     public $_telephone;

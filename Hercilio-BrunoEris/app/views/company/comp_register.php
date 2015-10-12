@@ -23,6 +23,10 @@
               <input type="text" class="form-control" maxlength="14" name="cnpj" placeholder="CNPJ" required>
             </div>
             <div class="form-group">
+              <label for="exampleInputEmail1">Endereço</label>
+              <input type="text" class="form-control" maxlength="255" name="address" placeholder="Endereço completo" required>
+            </div>
+            <div class="form-group">
               <input id="latInput" type="hidden" name="lat" value="">
               <input id="lngInput" type="hidden" name="lng" value="">
             </div>
@@ -51,7 +55,7 @@
             </div><br>
             <button type="submit" class="btn btn-default">Cadastrar</button>
           </form>
-          <a type="submit" href="user_login.php" class="btn btn-link">Voltar</a>
+          <a type="submit" href="comp_login.php" class="btn btn-link">Voltar</a>
           <br>
         </div>
       </div>
