@@ -6,6 +6,7 @@
     <title>Pão na Mão</title>
     <link rel="stylesheet" href="../../assets/css/bootstrap.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="../../assets/css/signup.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/style.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="../../assets/plugins/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
@@ -57,7 +58,7 @@
 
     <script src="../../assets/js/jquery-1.11.3.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBPlkMMoM8tjnpx5CE_uq0LkWII8Poc0w&callback=initMap"async defer></script>
+    <script async defe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBPlkMMoM8tjnpx5CE_uq0LkWII8Poc0w&callback=initialize"></script>
     <script src="../../assets/js/map_user_main.js"></script>
   </body>
 </html>
