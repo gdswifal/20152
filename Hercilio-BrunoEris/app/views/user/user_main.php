@@ -1,4 +1,4 @@
-<?php include_once("../../controllers/register.php"); ?>
+<?php include_once("../../controllers/session.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -46,6 +46,7 @@
                   <li><a href="#">Separated link</a></li>
                 </ul>
               </li>
+              <li><a href="../../controllers/session.php?logout=true">Sair</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

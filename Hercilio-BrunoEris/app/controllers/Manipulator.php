@@ -189,7 +189,6 @@ Class Manipulator{
                 return 1;
             }
             else{
-                echo "Dados de acesso incorretos.";
                 return 0;
             }
         }
@@ -218,6 +217,30 @@ Class Manipulator{
             }
             else{
                 echo "Dados de acesso incorretos.";
+                return 0;
+            }
+        }
+	}
+
+    public function recoverUser($email){
+        global $conn;
+        if ($stmt = $conn->prepare("SELECT user_id, user_name, user_mail FROM users WHERE user_mail=?")) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->bind_result($id, $name, $email);
+            $stmt->store_result();
+            $stmt->fetch();
+            $result = $stmt->num_rows;
+            $stmt->close();
+            $conn->close();
+
+            if($result == 1){
+                $this->_id = $id;
+                $this->_name = $name;
+                $this->_email = $email;
+                return 1;
+            }
+            else{
                 return 0;
             }
         }

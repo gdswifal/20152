@@ -27,6 +27,10 @@ body#start {
 .bgtable {
     background-color: #f2f2f2;
 }
+.alert{
+    max-width: 330px;
+    margin: auto;
+}
 .text-shadow {text-shadow:0 0 10px rgba(0,0,0,0.7);}
 
 .form-signin {
