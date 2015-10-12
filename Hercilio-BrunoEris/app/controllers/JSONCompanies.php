@@ -19,9 +19,7 @@ function catchCompanies(){
         $result[$i]["longitude"] = $lng;
         $result[$i]["telefone"] = $telephone;
         $i++;
-        echo "<pre>";
     }
-    //print_r($result);
     $json = json_encode($result);
     return $json;
     }
