@@ -17,6 +17,8 @@ function catchCompanies(){
         $result[$i]["nome"] = $name;
         $result[$i]["latitude"] = $lat;
         $result[$i]["longitude"] = $lng;
+            $pattern_telephone = '/(\d{2})(\d{4,5})(\d{4})/';
+            $telephone = preg_replace($pattern_telephone, '($1) $2.$3', $telephone);
         $result[$i]["telefone"] = $telephone;
         $i++;
     }

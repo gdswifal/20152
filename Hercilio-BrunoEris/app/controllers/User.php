@@ -31,8 +31,7 @@ class User extends Manipulator{
                 echo "Erro: ".$stmt->error." (".$stmt->errno.")";
             }
             else{
-                echo "Usuário ($email) cadastrado com sucesso!";
-                return true;
+                header('location: user_login.php?status=7369676e75702073756363657373');
             }
         }
 	}

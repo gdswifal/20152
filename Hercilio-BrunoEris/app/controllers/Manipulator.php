@@ -50,8 +50,7 @@ Class Manipulator{
         }
         else{
             if (!preg_match("/^[0-9a-zA-ZãÃáÁàÀêÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇºª ]+$/",$name)) {
-                echo "O nome deve conter apenas letras, números e espaços.";
-                $this->_validations[3] = false;
+                return $_GET['status'] = "696e76616c6964206e616d65";
             }else{
                 $this->_validations[3] = true;
                 return true;
