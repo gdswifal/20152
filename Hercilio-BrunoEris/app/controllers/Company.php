@@ -106,25 +106,14 @@ class Company extends Manipulator{
         $phpFileUploadResult = $phpFileUploadErrors[$image["error"]];
 
         if(isset($image['name']) && $image["error"] == 0){
-            //echo "Você enviou o arquivo: <strong>" . $_FILES['image']['name'] . "</strong><br>";
-            //echo "Este arquivo é do tipo: <strong>" . $_FILES['imagem']['type'] . "</strong><br>";
-            //echo "Temporariamente foi salvo em: <strong>" . $_FILES['imagem']['tmp_name'] . "</strong><br>";
-            //echo "Seu tamanho é: <strong>" . $_FILES['imagem']['size'] . "</strong> Bytes<br><br>";
-
             $tempFile = $_FILES['image']['tmp_name'];
             $name = $_FILES['image']['name'];
-
-            // Catch file extension
-            $extension = strtolower(strrchr($name, '.'));
+            $extension = strtolower(strrchr($name, '.')); // Catch file extension
 
             // Check if file is an image
             if(strstr('.jpg;.jpeg;.gif;.png', $extension)){
-
-                // Set filename as an MD5 crypt of company's CNPJ
-                $outputFilename = md5($this->_cnpj).$extension;
-
-                // Define target to move the uploaded image
-                $target = '../../images/companyLogos/' . $outputFilename;
+                $outputFilename = md5($this->_cnpj).$extension; // Set filename as an MD5 crypt of company's CNPJ
+                $target = '../../images/companyLogos/' . $outputFilename; // Define target to move the uploaded image
 
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
