@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Endereço</label>
-              <input type="text" class="form-control" maxlength="255" name="address" placeholder="Endereço completo" required>
+              <input id="endInput" type="text" class="form-control" maxlength="255" name="address" placeholder="Endereço completo" value="" required>
             </div>
             <div class="form-group">
               <input id="latInput" type="hidden" name="lat" value="">
