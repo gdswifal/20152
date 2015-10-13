@@ -31,15 +31,13 @@ class Company extends Manipulator{
     		$hashPassword = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$'); //results 60-digit hash.
             $stmt->bind_param("sssssss", ucfirst($name), $location, $email, preg_replace('/[^\d]+/', '', $telephone), $hashPassword, $cnpj, $address);
     		$stmt->execute();
-            $conn->close();
             if($stmt->affected_rows != 1){
                 global $errorSTMT;
                 $errorSTMT = $stmt->error;
                 return $_GET['status'] = "73746d74";
             }
             else{
-                echo "Empresa ($email) cadastrada com sucesso!";
-                header('location: comp_login.php?status=7369676e75702073756363657373');
+                return true;
             }
         }
 	}
@@ -117,7 +115,19 @@ class Company extends Manipulator{
 
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
-                    return true;
+                    global $conn;
+                    $stmt = $conn->prepare("UPDATE companies SET comp_logo = ? WHERE comp_cnpj = ?");
+                    $stmt->bind_param("ss", $outputFilename, $this->_cnpj);
+            		$stmt->execute();
+                    $conn->close();
+                    if($stmt->affected_rows != 1){
+                        global $errorSTMT;
+                        $errorSTMT = $stmt->error;
+                        return $_GET['status'] = "73746d74";
+                    }
+                    else{
+                        header('location: comp_login.php?status=7369676e75702073756363657373');
+                    }
                 }
                 else{
                     echo "Erro ao salvar a imagem.".move_uploaded_file($tempFile, $target);
