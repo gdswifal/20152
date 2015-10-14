@@ -2,11 +2,11 @@
 include_once("DBConnect.php");
 function catchCompanies(){
     global $conn;
-    if ($stmt = $conn->prepare("SELECT comp_id, comp_name, comp_location, comp_telephone FROM companies")) {
+    if ($stmt = $conn->prepare("SELECT comp_id, comp_name, comp_location, comp_telephone, comp_logo FROM companies")) {
     /* execute statement */
     $stmt->execute();
     /* bind result variables */
-    $stmt->bind_result($id, $name, $latlng, $telephone);
+    $stmt->bind_result($id, $name, $latlng, $telephone, $logo);
     /* fetch values */
     $i = 0;
     while ($stmt->fetch()) {
@@ -17,7 +17,10 @@ function catchCompanies(){
         $result[$i]["nome"] = $name;
         $result[$i]["latitude"] = $lat;
         $result[$i]["longitude"] = $lng;
+            $pattern_telephone = '/(\d{2})(\d{4,5})(\d{4})/';
+            $telephone = preg_replace($pattern_telephone, '($1) $2.$3', $telephone);
         $result[$i]["telefone"] = $telephone;
+        $result[$i]["logo"] = $logo;
         $i++;
     }
     $json = json_encode($result);

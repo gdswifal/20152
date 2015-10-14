@@ -37,7 +37,8 @@ function initialize() {
                 icon: '../../assets/img/coffee-shop2.png'
             });
 
-            var conteudo = "<div><b><h4>Padaria: "+val.nome+"</b></h6>"+
+            var conteudo = '<div><img src="../../images/companyLogos/'+val.logo+'" alt="SEM FOTO" class="logoCompany">'+
+                              '<b><h4>'+val.nome+'</b></h6>'+
                               '<h6>Status: <b>Aberto</b></h6>'+
                               '<div class="define-width-list"></div>'+
                               '<div class="list-group">'+
@@ -49,7 +50,7 @@ function initialize() {
                                   '<span class="text-center">Telefone: '+val.telefone+'</span>'+
                                 '</div>'+
                               '</div>'+
-                            "</div>";
+                            '</div>';
 
             var infoWindow = new google.maps.InfoWindow({
                content: conteudo
