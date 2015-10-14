@@ -34,7 +34,7 @@ function initialize() {
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
-                icon: '../../assets/img/coffee-shop2.png'
+                icon: '../../assets/img/coffee-shop.png'
             });
 
             var conteudo = '<div><img src="../../images/companyLogos/'+val.logo+'" alt="SEM FOTO" class="logoCompany">'+
