@@ -9,12 +9,17 @@ spl_autoload_register("autoload");
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['username'])){
         $person = new User($_POST['username'], $_POST['email'], $_POST['telephone'], $_POST['password']);
-        $person->checkPass($person->_password, $_POST['password_confirm']);
-        $person->checkPhone($person->_telephone, $person->_validations);
-        $person->checkEmail($person->_email, $person->_validations);
-        $person->checkName($person->_name, $person->_validations);
-        $person->userCheckValidations($person->_validations);
-        $person->registerUser($person->_name, $person->_email, $person->_telephone, $person->_password, $person->_validations);
+        $validation[] = $person->checkPass($person->_password, $_POST['password_confirm']);
+        $validation[] = $person->checkPhone($person->_telephone);
+        $validation[] = $person->checkEmail($person->_email);
+        $validation[] = $person->checkName($person->_name);
+        if (!in_array(0, $validation)) { //Check if some function returned 0
+            $registration = $person->registerUser($person->_name, $person->_email, $person->_telephone, $person->_password);
+            if($registration){
+                echo "Cadastrado! Upando imagem...";
+                $person->uploadFile($_FILES['image'], $_POST['MAX_FILE_SIZE']);
+            }
+        }
     }
     if(isset($_POST['compname'])){
         if($_POST['lat'] != "" && $_POST['lng'] != "" && $_POST['address'] != ""){
