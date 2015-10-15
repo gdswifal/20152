@@ -9,6 +9,7 @@ class Company extends Manipulator{
     public $_cnpj;
     public $_address;
     public $_logo;
+    public $_phrase;
 
     public function __construct($name, $location, $email, $telephone, $password, $cnpj, $address){
         $this->_name = $name;
@@ -19,7 +20,7 @@ class Company extends Manipulator{
         $this->_cnpj = $cnpj;
         $this->_address = $address;
     }
-    
+
     public function registerCompany($name, $location, $email, $telephone, $password, $cnpj, $address){
         global $conn;
         if ($stmt = $conn->prepare("INSERT INTO companies (comp_name, comp_location, comp_email, comp_telephone, comp_password, comp_cnpj, comp_address) VALUES (?, ?, ?, ?, ?, ?, ?)")){
@@ -42,11 +43,11 @@ class Company extends Manipulator{
 
     public function loginCompany($email, $password){
         global $conn;
-        if ($stmt = $conn->prepare("SELECT comp_id, comp_name, comp_location, comp_email, comp_telephone, comp_cnpj, comp_logo FROM companies WHERE comp_email=? AND comp_password=?")) {
+        if ($stmt = $conn->prepare("SELECT comp_id, comp_name, comp_location, comp_email, comp_telephone, comp_cnpj, comp_logo, comp_phrase FROM companies WHERE comp_email=? AND comp_password=?")) {
             $hash = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$');
             $stmt->bind_param("ss", $email, $hash);
             $stmt->execute();
-            $stmt->bind_result($id, $name, $location, $email, $telephone, $cnpj, $logo);
+            $stmt->bind_result($id, $name, $location, $email, $telephone, $cnpj, $logo, $phrase);
             $stmt->store_result();
             $stmt->fetch();
             $result = $stmt->num_rows;
@@ -60,6 +61,7 @@ class Company extends Manipulator{
                 $this->_telephone = $telephone;
                 $this->_cnpj = $cnpj;
                 $this->_logo = $logo;
+                $this->_phrase = $phrase;
                 return 1;
             }
             else{

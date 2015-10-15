@@ -1,10 +1,9 @@
-$('.linkAjax').click(function(event){
+$(document).on('click', ".linkAjax", function(){
 	var link = $(this).attr("href");
 	if(link != "#"){
 	    $("#content").load(link, function( response, status, xhr ) {
 			if ( status == "error" ) {
-				var msg = "Erro: ";
-				$("#content").html( msg + xhr.status + " " + xhr.statusText );
+				$("#content").html("Erro: "+link+" "+xhr.statusText+" ("+xhr.status+")");
 			}
 			else{
 				if (!$(".navbar-toggle").hasClass("collapsed")) {
@@ -18,4 +17,4 @@ $('.linkAjax').click(function(event){
 		console.log("Link #");
 	}
 	return false;
-  });
+});

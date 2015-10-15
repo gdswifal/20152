@@ -30,6 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         	$_SESSION['cnpj'] = $company->_cnpj;
         	$_SESSION['address'] = $company->_address;
         	$_SESSION['photo'] = $company->_logo;
+        	$_SESSION['phrase'] = $company->_phrase;
         	$_SESSION['hora'] = date("H:i");
         	$_SESSION['logged'] = true;
             header('location: main.php');
