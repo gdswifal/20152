@@ -5,6 +5,7 @@ class User extends Manipulator{
     public $_email;
     public $_telephone;
     public $_password;
+    public $_photo;
 
     public function __construct($name, $email, $telephone, $password){
         $this->_name = $name;
@@ -85,11 +86,11 @@ class User extends Manipulator{
 
     public function loginUser($email, $password){
         global $conn;
-        if ($stmt = $conn->prepare("SELECT user_id, user_name, user_email, user_telephone FROM users WHERE user_email=? AND user_password=?")) {
+        if ($stmt = $conn->prepare("SELECT user_id, user_name, user_email, user_telephone, user_profile_photo FROM users WHERE user_email=? AND user_password=?")) {
             $hash = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$');
             $stmt->bind_param("ss", $email, $hash);
             $stmt->execute();
-            $stmt->bind_result($id, $name, $email, $telephone);
+            $stmt->bind_result($id, $name, $email, $telephone, $photo);
             $stmt->store_result();
             $stmt->fetch();
             $result = $stmt->num_rows;
@@ -100,6 +101,7 @@ class User extends Manipulator{
                 echo "Acesso concedido.";
                 $this->_name = $name;
                 $this->_telephone = $telephone;
+                $this->_photo = $photo;
                 return true;
             }
             else{

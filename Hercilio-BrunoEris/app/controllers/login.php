@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         	$_SESSION['name'] = $person->_name;
         	$_SESSION['email'] = $person->_email;
         	$_SESSION['telephone'] = $person->_telephone;
+        	$_SESSION['photo'] = $person->_photo;
         	$_SESSION['hora'] = date("H:i");
         	$_SESSION['logged'] = true;
             header('location: user_main.php');
@@ -33,6 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         	$_SESSION['telephone'] = $company->_telephone;
         	$_SESSION['cnpj'] = $company->_cnpj;
         	$_SESSION['address'] = $company->_address;
+        	$_SESSION['photo'] = md5($company->_cnpj);
         	$_SESSION['hora'] = date("H:i");
         	$_SESSION['logged'] = true;
             header('location: TODO.php');
