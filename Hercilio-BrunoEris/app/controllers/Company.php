@@ -1,5 +1,6 @@
 <?php
 class Company extends Manipulator{
+    public $_id;
     public $_name;
     public $_location;
     public $_email;
@@ -7,6 +8,7 @@ class Company extends Manipulator{
     public $_password;
     public $_cnpj;
     public $_address;
+    public $_logo;
 
     public function __construct($name, $location, $email, $telephone, $password, $cnpj, $address){
         $this->_name = $name;
@@ -17,7 +19,7 @@ class Company extends Manipulator{
         $this->_cnpj = $cnpj;
         $this->_address = $address;
     }
-
+    
     public function registerCompany($name, $location, $email, $telephone, $password, $cnpj, $address){
         global $conn;
         if ($stmt = $conn->prepare("INSERT INTO companies (comp_name, comp_location, comp_email, comp_telephone, comp_password, comp_cnpj, comp_address) VALUES (?, ?, ?, ?, ?, ?, ?)")){
@@ -40,11 +42,11 @@ class Company extends Manipulator{
 
     public function loginCompany($email, $password){
         global $conn;
-        if ($stmt = $conn->prepare("SELECT comp_id, comp_name, comp_location, comp_email, comp_telephone, comp_cnpj FROM companies WHERE comp_email=? AND comp_password=?")) {
+        if ($stmt = $conn->prepare("SELECT comp_id, comp_name, comp_location, comp_email, comp_telephone, comp_cnpj, comp_logo FROM companies WHERE comp_email=? AND comp_password=?")) {
             $hash = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$');
             $stmt->bind_param("ss", $email, $hash);
             $stmt->execute();
-            $stmt->bind_result($id, $name, $location, $email, $telephone, $cnpj);
+            $stmt->bind_result($id, $name, $location, $email, $telephone, $cnpj, $logo);
             $stmt->store_result();
             $stmt->fetch();
             $result = $stmt->num_rows;
@@ -52,10 +54,12 @@ class Company extends Manipulator{
             $conn->close();
 
             if($result == 1){
+                $this->_id = $id;
                 $this->_name = $name;
                 $this->_location = $location;
                 $this->_telephone = $telephone;
                 $this->_cnpj = $cnpj;
+                $this->_logo = $logo;
                 return 1;
             }
             else{
@@ -104,7 +108,7 @@ class Company extends Manipulator{
                         return $_GET['status'] = "73746d74";
                     }
                     else{
-                        header('location: comp_login.php?status=7369676e75702073756363657373');
+                        header('location: login.php?status=7369676e75702073756363657373');
                     }
                 }
                 else{
