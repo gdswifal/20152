@@ -14,9 +14,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $validation[] = $person->checkEmail($person->_email);
         $validation[] = $person->checkName($person->_name);
         if (!in_array(0, $validation)) { //Check if some function returned 0
-            $registration = $person->registerUser($person->_name, $person->_email, $person->_telephone, $person->_password);
-            if($registration){
-                echo "Cadastrado! Upando imagem...";
+            $registerResult = $person->registerUser($person->_name, $person->_email, $person->_telephone, $person->_password);
+            if($registerResult == true || $_FILES['image']['error'] == 4){
                 $person->uploadFile($_FILES['image'], $_POST['MAX_FILE_SIZE']);
             }
         }

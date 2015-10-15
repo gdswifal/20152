@@ -13,20 +13,6 @@ class User extends Manipulator{
         $this->_password = $password;
     }
 
-    public function registerUser($name, $email, $telephone, $password){
-        global $conn;
-        $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_telephone, user_password) VALUES (?, ?, ?, ?)");
-		$hashPassword = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$'); //results 60-digit hash.
-        $stmt->bind_param("ssss", ucfirst($name), $email, preg_replace('/[^\d]+/', '', $telephone), $hashPassword);
-		$stmt->execute();
-        if($stmt->affected_rows != 1){
-            echo "Erro: ".$stmt->error." (".$stmt->errno.")";
-        }
-        else{
-            return true;
-        }
-	}
-
     public function uploadFile($image, $maxfilesize){
         $phpFileUploadErrors = array(
             0 => 'Upload de arquivo efetuado com sucesso.',
@@ -60,7 +46,6 @@ class User extends Manipulator{
                     if($stmt->affected_rows != 1){
                         global $errorSTMT;
                         $errorSTMT = $stmt->error;
-                        printf("Error: %s.\n", $stmt->error);
                         return $_GET['status'] = "73746d74";
                     }
                     else{
@@ -78,6 +63,25 @@ class User extends Manipulator{
             echo "Resultado do Upload: ".$phpFileUploadResult;
         }
     }
+
+    public function registerUser($name, $email, $telephone, $password){
+        global $conn;
+        $stmt = $conn->prepare("INSERT INTO users (user_name, user_email, user_telephone, user_password) VALUES (?, ?, ?, ?)");
+		$hashPassword = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$'); //results 60-digit hash.
+        $stmt->bind_param("ssss", ucfirst($name), $email, preg_replace('/[^\d]+/', '', $telephone), $hashPassword);
+		$stmt->execute();
+        if($stmt->affected_rows != 1){
+            echo "Erro: ".$stmt->error." (".$stmt->errno.")";
+            if(strpos($stmt->error,'Duplicate entry') !== false && strpos($stmt->error,'mail') !== false){
+                global $_email;
+                $_email = $email;
+                $_GET['status'] = "726570656174656420656d61696c";
+            }
+        }
+        else{
+            return true;
+        }
+	}
 
     public function loginUser($email, $password){
         global $conn;
