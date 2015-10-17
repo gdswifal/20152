@@ -16,3 +16,10 @@ if (!$conn->set_charset("utf8")) {
     printf("Erro ao configurar character set to utf8: %s\n", $conn->error);
     exit();
 }
+
+/* Requests classes on demand */
+function autoload ($Class) {
+    include(__DIR__ . "/" . $Class . ".php");
+}
+spl_autoload_register("autoload");
+session_start();

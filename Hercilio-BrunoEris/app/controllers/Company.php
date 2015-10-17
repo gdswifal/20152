@@ -1,5 +1,6 @@
 <?php
 class Company extends Manipulator{
+    public $_id;
     public $_name;
     public $_location;
     public $_email;
@@ -7,7 +8,8 @@ class Company extends Manipulator{
     public $_password;
     public $_cnpj;
     public $_address;
-    public $_validations = array(false,false,false,false,false,false);
+    public $_logo;
+    public $_phrase;
 
     public function __construct($name, $location, $email, $telephone, $password, $cnpj, $address){
         $this->_name = $name;
@@ -19,17 +21,11 @@ class Company extends Manipulator{
         $this->_address = $address;
     }
 
-    public function registerCompany($name, $location, $email, $telephone, $password, $cnpj, $address, $autorization){
-        if(is_array($autorization)){
-            if (in_array(0, $autorization)) {
-                return false;
-            }
-        }
-        elseif($autorization === true){
-            global $conn;
-            $stmt = $conn->prepare("INSERT INTO companies (comp_name, comp_location, comp_email, comp_telephone, comp_password, comp_cnpj, comp_address) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    		$hashPassword = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$'); //results 60-digit hash.
-            $stmt->bind_param("sssssss", ucfirst($name), $location, $email, preg_replace('/[^\d]+/', '', $telephone), $hashPassword, $cnpj, $address);
+    public function registerCompany($name, $location, $email, $telephone, $password, $cnpj, $address){
+        global $conn;
+        if ($stmt = $conn->prepare("INSERT INTO companies (comp_name, comp_location, comp_email, comp_telephone, comp_password, comp_cnpj, comp_address) VALUES (?, ?, ?, ?, ?, ?, ?)")){
+            $hashPassword = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$'); //results 60-digit hash.
+            $stmt->bind_param("sssssss", ucfirst($name), $location, $email, $telephone, $hashPassword, $cnpj, $address);
     		$stmt->execute();
             if($stmt->affected_rows != 1){
                 global $errorSTMT;
@@ -40,35 +36,18 @@ class Company extends Manipulator{
                 return true;
             }
         }
-	}
-
-    public function companyCheckValidations($autorization){
-        $info = "Falha na validação de";
-        if($autorization[0] == false){
-            echo "$info senha.";
-        }elseif($autorization[1] == false){
-            echo "$info telefone.";
-        }elseif($autorization[2] == false){
-            echo "$info e-mail.";
-        }elseif($autorization[3] == false){
-            echo "$info nome.";
-        }elseif($autorization[4] == false){
-            echo "$info CNPJ.";
-        }elseif($autorization[5] == false){
-            echo "$info endereço.";
-        }
         else{
-            $this->_validations = true;
+            echo "Falha na conexão: ".$conn->error;
         }
-    }
+	}
 
     public function loginCompany($email, $password){
         global $conn;
-        if ($stmt = $conn->prepare("SELECT comp_id, comp_name, comp_location, comp_email, comp_telephone, comp_cnpj FROM companies WHERE comp_email=? AND comp_password=?")) {
+        if ($stmt = $conn->prepare("SELECT comp_id, comp_name, comp_location, comp_email, comp_telephone, comp_cnpj, comp_logo, comp_phrase FROM companies WHERE comp_email=? AND comp_password=?")) {
             $hash = crypt($password, '$2a$08$GDSWHBpaonamao7psi2015$');
             $stmt->bind_param("ss", $email, $hash);
             $stmt->execute();
-            $stmt->bind_result($id, $name, $location, $email, $telephone, $cnpj);
+            $stmt->bind_result($id, $name, $location, $email, $telephone, $cnpj, $logo, $phrase);
             $stmt->store_result();
             $stmt->fetch();
             $result = $stmt->num_rows;
@@ -76,17 +55,22 @@ class Company extends Manipulator{
             $conn->close();
 
             if($result == 1){
-                echo "Acesso concedido.";
+                $this->_id = $id;
                 $this->_name = $name;
                 $this->_location = $location;
                 $this->_telephone = $telephone;
                 $this->_cnpj = $cnpj;
+                $this->_logo = $logo;
+                $this->_phrase = $phrase;
                 return 1;
             }
             else{
-                echo "Dados de acesso incorretos.";
+                $_GET['status'] = "77726f6e6720757365726e616d65206f722070617373776f7264";
                 return 0;
             }
+        }
+        else{
+            echo "Falha na conexão: ".$conn->error;
         }
 	}
 
@@ -126,7 +110,7 @@ class Company extends Manipulator{
                         return $_GET['status'] = "73746d74";
                     }
                     else{
-                        header('location: comp_login.php?status=7369676e75702073756363657373');
+                        header('location: login.php?status=7369676e75702073756363657373');
                     }
                 }
                 else{

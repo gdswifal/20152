@@ -70,6 +70,13 @@ switch (@$_GET["status"]){
             O e-mail digitado ('.$_email.') foi considerado inválido.
         </div>';
         break;
+    case '726570656174656420656d61696c': //repeated email
+        echo '
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            O e-mail ('.$_email.') já possui cadastro.
+        </div>';
+        break;
     case '696e76616c6964206e616d65': //invalid name
         echo '
         <div class="alert alert-warning alert-dismissible" role="alert">

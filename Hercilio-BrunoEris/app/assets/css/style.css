@@ -2,3 +2,9 @@
     width: 100px;
     margin-left: 60px;
 }
+.navbar-brand{
+    padding: 10px;
+}
+.navbar-brand img{
+    height: 34px;
+}
