@@ -1,10 +1,5 @@
 <?php
 include_once("DBConnect.php");
-/* Requests classes on demand */
-function autoload ($Class) {
-    include(__DIR__ . "/" . $Class . ".php");
-}
-spl_autoload_register("autoload");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['username'])){
