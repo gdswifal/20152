@@ -36,7 +36,7 @@
                   <li><a href="#">Meus Pedidos</a></li>
                   <li><a href="#">Atualizar Dados</a></li>
                   <li role="separator" class="divider"></li>
-                  <li class="active"><a href="../../controllers/session.php?logout=true">Sair</a></li>
+                  <li><a href="../../controllers/session.php?logout_user=true">Sair</a></li>
                 </ul>
               </li>
             </ul>
