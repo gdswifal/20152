@@ -2,9 +2,25 @@
     width: 100px;
     margin-left: 60px;
 }
-.navbar-brand{
+/*.navbar-brand{
     padding: 10px;
 }
 .navbar-brand img{
     height: 34px;
+}*/
+.brand-main {
+  margin-top: 2px;
+}
+.brand-pao {
+    width: 30px;
+    height: 30px;
+    /*border-radius: 50px;*/
+}
+.user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50px;
+}
+.user-search {
+    margin-top: 19px;
 }
