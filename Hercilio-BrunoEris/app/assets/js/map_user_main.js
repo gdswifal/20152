@@ -46,7 +46,7 @@ function initialize() {
                                   'Efetuar Pedido'+
                                 '</a>'+
                                 '<div class="list-group-item">'+
-                                  '<span class="text-center"><b>Promoção Dia Das Crianças</b></span><br>'+
+                                  '<span class="text-center"><b>'+val.frase+'</b></span><br>'+
                                   '<span class="text-center">Telefone: '+val.telefone+'</span>'+
                                 '</div>'+
                               '</div>'+

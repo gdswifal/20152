@@ -125,5 +125,28 @@ class Company extends Manipulator{
             exit;
         }
     }
+
+    public function updateCompany($id, $name, $telephone, $phrase){
+        if(!is_numeric($telephone)){
+            echo "<div class=\"alert alert-warning\">Telefone deve ter apenas dígitos numéricos.</div>";
+        }elseif(strlen($telephone) < 10 || strlen($telephone) > 11){
+            echo "<div class=\"alert alert-warning\">Telefone deve ter entre 10 e 11 dígitos (com DDD).</div>";
+        }else{
+            global $conn;
+            if ($stmt = $conn->prepare("UPDATE companies SET comp_name=?, comp_telephone=?, comp_phrase=? WHERE comp_id=?")) {
+                $stmt->bind_param("sssi", $name, $telephone, $phrase, $id);
+                $stmt->execute();
+                $result = $stmt->affected_rows;
+                echo ($result == 1) ? "<div class=\"alert alert-success text-center\">Dados atualizados com sucesso!</div>" : "<div class=\"alert alert-danger text-center\">Nenhum dado alterado.</div>";
+                $_SESSION['name'] = $this->_name;
+                $_SESSION['phrase'] = $this->_phrase;
+                $_SESSION['telephone'] = $this->_telephone;
+            }
+            else{
+                echo "Falha na conexão: ".$conn->error;
+            }
+        }
+	}
+
 }
 ?>
