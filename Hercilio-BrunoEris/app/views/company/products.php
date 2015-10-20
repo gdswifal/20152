@@ -20,19 +20,23 @@ function getProducts($companyId){
     }
 }
 ?>
-<a class="linkAjax btn btn-default" href="newProduct.php" role="button">Novo Produto</a>
-<h1>Seus produtos</h1>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Descrição</th>
-            <th>Data de Produção</th>
-            <th>Data de Vencimento</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php getProducts($_SESSION['id']); ?>
-    </tbody>
-</table>
+<div class="col-md-3"></div>
+<div class="col-md-6">
+    <a class="linkAjax btn btn-default" href="newProduct.php" role="button">Novo Produto</a>
+    <h1>Seus produtos</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Data de Produção</th>
+                <th>Data de Vencimento</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php getProducts($_SESSION['id']); ?>
+        </tbody>
+    </table>
+</div>
+<div class="col-md-3"></div>
