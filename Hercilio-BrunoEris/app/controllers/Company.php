@@ -125,5 +125,19 @@ class Company extends Manipulator{
             exit;
         }
     }
+
+    public function updateCompany($id, $name, $telephone, $phrase){
+        global $conn;
+        if ($stmt = $conn->prepare("UPDATE companies SET comp_name=?, comp_telephone=?, comp_phrase=? WHERE comp_id=?")) {
+            $stmt->bind_param("sssi", $name, $telephone, $phrase, $id);
+            $stmt->execute();
+            $result = $stmt->affected_rows;
+            echo ($result == 1) ? "<div class=\"alert alert-success\"> Dados atualizados com sucesso!</div>" : "<div class=\"alert alert-warning\"><strong>Atenção</strong> Altere os dados antes de salvar as alterações</div>";
+        }
+        else{
+            echo "Falha na conexão: ".$conn->error;
+        }
+	}
+
 }
 ?>
