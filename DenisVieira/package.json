@@ -1,0 +1,19 @@
+{
+  "name": "simpledesk",
+  "version": "1.0.0",
+  "description": "Simple help desk application",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fromdenisvieira/20152.git"
+  },
+  "author": "Denis Vieira <denisvieira05@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fromdenisvieira/20152/issues"
+  },
+  "homepage": "https://github.com/fromdenisvieira/20152#readme"
+}

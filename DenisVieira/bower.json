@@ -1,0 +1,19 @@
+{
+  "name": "simpledesk",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fromdenisvieira/20152",
+  "authors": [
+    "Denis Vieira <denisvieira05@gmail.com>"
+  ],
+  "description": "Simple help desk application",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
