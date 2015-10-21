@@ -42,7 +42,7 @@
                     </div><br>
                     <button type="submit" class="btn btn-default">Cadastrar</button>
                 </form>
-                <a type="submit" href="user_login.php" class="btn btn-link">Voltar</a>
+                <a type="submit" href="login.php" class="btn btn-link">Voltar</a>
                 <br>
             </div>
         </div>

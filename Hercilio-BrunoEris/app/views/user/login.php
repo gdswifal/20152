@@ -25,8 +25,7 @@
                     <input type="email" name="useremail" class="form-control" placeholder="E-mail" required autofocus>
                     <input type="password" name="password" class="form-control" placeholder="Senha" required>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-                    <a class="btn btn-sm btn-link" href="user_recover.php" title="Esqueci a senha">Esqueci a senha</a><br><br>
-                    <a class="btn btn-sm btn-default" href="user_register.php">Cadastre-se</a><br>
+                    <a class="btn btn-sm btn-default" href="register.php">Cadastre-se</a><br>
                     <small><a class="btn btn-sm btn-link btn-success" href="../company/register.php">Empresa? Cadastre-se aqui!</a></small>
                 </form>
             </div>
