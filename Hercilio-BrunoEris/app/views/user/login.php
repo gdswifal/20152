@@ -26,7 +26,7 @@
                     <input type="password" name="password" class="form-control" placeholder="Senha" required>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
                     <a class="btn btn-sm btn-default" href="register.php">Cadastre-se</a><br>
-                    <small><a class="btn btn-sm btn-link btn-success" href="../company/register.php">Empresa? Cadastre-se aqui!</a></small>
+                    <small><a class="btn btn-sm btn-link btn-success" href="../">Voltar</a></small>
                 </form>
             </div>
         </div>
