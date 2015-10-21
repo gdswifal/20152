@@ -42,9 +42,10 @@
         </nav>
     </header>
     <div class="container-fluid" id="content"></div>
-
+    <div id="output"></div>
     <script src="../../assets/js/jquery-1.11.3.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
     <script src="../../assets/js/linkAjax.js"></script>
+    <script src="../../assets/js/alert.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 include_once("../../controllers/DBConnect.php");
+include_once("../../controllers/session.php");
 
 function getProducts($companyId){
     global $conn;

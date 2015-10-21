@@ -9,10 +9,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         	$_SESSION['name'] = $person->_name;
         	$_SESSION['email'] = $person->_email;
         	$_SESSION['telephone'] = $person->_telephone;
-        	$_SESSION['photo'] = $person->_photo;
+        	$_SESSION['photo'] = (!isset($person->_photo)) ? 'avatar_default.png' : $person->_photo;
         	$_SESSION['hora'] = date("H:i");
         	$_SESSION['logged'] = true;
-            header('location: user_main.php');
+            header('location: main.php');
         }
         else{
             $_GET['status'] = "77726f6e6720757365726e616d65206f722070617373776f7264";
