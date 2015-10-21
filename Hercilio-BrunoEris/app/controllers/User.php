@@ -35,7 +35,13 @@ class User extends Manipulator{
             // Check if file is an image
             if(strstr('.jpg;.jpeg;.gif;.png', $extension)){
                 $outputFilename = md5($this->_email).$extension; // Set filename as an MD5 crypt of user's id
-                $target = '../../images/profiles/' . $outputFilename; // Define target to move the uploaded image
+                $target = '../../assets/img/user/'; // Define target to move the uploaded image
+                chmod($target, 0777);
+                $target = $target.$outputFilename;
+
+                if (!file_exists('../../assets/img/user')) {
+                    mkdir('../../assets/img/user', 0777, true);
+                }
 
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
@@ -50,7 +56,7 @@ class User extends Manipulator{
                         return $_GET['status'] = "73746d74";
                     }
                     else{
-                        header('location: user_login.php?status=7369676e75702073756363657373');
+                        header('location: login.php?status=7369676e75702073756363657373');
                     }
                 }
                 else{

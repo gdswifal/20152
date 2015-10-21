@@ -95,10 +95,13 @@ class Company extends Manipulator{
             // Check if file is an image
             if(strstr('.jpg;.jpeg;.gif;.png', $extension)){
                 $outputFilename = md5($this->_cnpj).$extension; // Set filename as an MD5 crypt of company's CNPJ
-                $target = "../../images/companyLogos/";
+                $target = "../../assets/img/company/";
                 chmod($target, 0777);
                 $target = $target.$outputFilename; // Define target to move the uploaded image
-                
+                if (!file_exists('../../assets/img/company')) {
+                    mkdir('../../assets/img/company', 0777, true);
+                }
+
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
                     global $conn;
@@ -139,7 +142,7 @@ class Company extends Manipulator{
                 $stmt->bind_param("sssi", $name, $telephone, $phrase, $id);
                 $stmt->execute();
                 $result = $stmt->affected_rows;
-                echo ($result == 1) ? "<div class=\"alert alert-success text-center\">Dados atualizados com sucesso!</div>" : "<div class=\"alert alert-danger text-center\">Nenhum dado alterado.</div>";
+                echo ($result == 1) ? "<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Dados atualizados com sucesso!</div>" : "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\"><span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Você não alterou nenhum dado.</div>";
                 $_SESSION['name'] = $this->_name;
                 $_SESSION['phrase'] = $this->_phrase;
                 $_SESSION['telephone'] = $this->_telephone;
