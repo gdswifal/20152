@@ -2,11 +2,19 @@
 Class Manipulator{
     public function checkPass($password, $confirmation){
         if($password != $confirmation){
-            $_GET['status'] = "70617373776f72647320646f6e2774206d61746368";
-            return false;
-        }elseif(strlen($password) > 46 || strlen($password) < 5){
-            $_GET['status'] = "6d696e6c656e6774682070617373776f7264";
-            return false;
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Confirmação de senha não confere com a senha digitada.
+            </div>';
+            exit;
+        }elseif(strlen($password) > 45 || strlen($password) < 6){
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                A senha deve ter entre 6 e 45 caracteres.
+            </div>';
+            exit;
         }else{
             return true;
         }
@@ -14,12 +22,20 @@ Class Manipulator{
 
     public function checkPhone($telephone){
         if(!is_numeric($telephone)){
-            $_GET['status'] = "70686f6e65206d7573742068617665206f6e6c79206e756d62657273";
-            return false;
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Telefone deve conter apenas números.
+            </div>';
+            exit;
         }
         elseif(strlen($telephone) < 10 || strlen($telephone) > 11){
-            $_GET['status'] = "6572726f722070686f6e65206c656e677468";
-            return false;
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                Telefone deve ter entre 10 e 11 dígitos (com DDD).
+            </div>';
+            exit;
         }else{
             return true;
         }
@@ -27,10 +43,12 @@ Class Manipulator{
 
     public function checkEmail($email){
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            global $_email;
-            $_email = $email;
-            $_GET['status'] = "696e76616c696420656d61696c";
-            return false;
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                O e-mail digitado ('.$email.') foi considerado inválido.
+            </div>';
+            exit;
         }else{
             return true;
         }
@@ -38,8 +56,12 @@ Class Manipulator{
 
     public function checkName($name){
         if (!preg_match("/^[0-9a-zA-ZãÃáÁàÀêÊéÉèÈíÍìÌôÔõÕóÓòÒúÚùÙûÛçÇºª ]+$/",$name)) {
-            $_GET['status'] = "696e76616c6964206e616d65";
-            return false;
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                O nome deve conter apenas letras, números e espaços.
+            </div>';
+            exit;
         }else{
             return true;
         }
@@ -47,11 +69,19 @@ Class Manipulator{
 
     public function checkCNPJ($cnpj){
         if (strlen($cnpj) != 14) {
-            $_GET['status'] = "696e76616c696420636e706a206c656e677468";
-            return false;
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                O CNPJ deve conter 14 caracteres.
+            </div>';
+            exit;
         }elseif (!is_numeric($cnpj)) {
-            $_GET['status'] = "696e76616c696420636e706a20666f726d6174";
-            return false;
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                O CNPJ deve conter apenas números, sem caracteres especiais.
+            </div>';
+            exit;
         }else{
             return true;
         }
@@ -59,7 +89,12 @@ Class Manipulator{
 
     public function checkAddress($address){
         if (strlen($address) < 5) {
-            return false;
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                O endereço deve ter pelo menos 5 caracteres.
+            </div>';
+            exit;
         }else{
             return true;
         }

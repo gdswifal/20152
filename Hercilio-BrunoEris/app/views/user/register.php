@@ -1,4 +1,3 @@
-<?php include_once("../../controllers/register.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +9,10 @@
 </head>
 <body>
     <div class="container">
-        <?php include_once("../feedback.php"); ?>
         <div class="row">
             <div class="col-md-6 col-md-offset-3 container-signup-user">
                 <h1 class="text-center">Registre-se</h1><br>
-                <form method="post" enctype="multipart/form-data" action="">
+                <form id="formAjax" method="post" enctype="multipart/form-data" action="../../controllers/register.php">
                     <div class="form-group">
                         <label for="InputName">Nome Completo</label>
                         <input type="text" id="InputName" class="form-control" maxlength="255" name="username" placeholder="Nome" value="<?php echo @$person->_name ?>" required autofocus>
@@ -37,8 +35,8 @@
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="MAX_FILE_SIZE" value="500000">
-                        <label for="compFile">Escolha sua foto de perfil</label>
-                        <input class="btn btn-primary btn-file" id="compFile" type="file" accept="image/*" name="image">
+                        <label for="userFile">Escolha sua foto de perfil</label>
+                        <input class="btn btn-primary btn-file" id="userFile" type="file" accept="image/*" name="image">
                     </div><br>
                     <button type="submit" class="btn btn-default">Cadastrar</button>
                 </form>
@@ -47,9 +45,12 @@
             </div>
         </div>
     </div>
+    <div id="output"></div>
 
     <script src="../../assets/js/jquery-1.11.3.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/jquery.form.min.js"></script>
+    <script src="../../assets/js/form.js"></script>
     <script src="../../assets/js/alert.js"></script>
 </body>
 </html>

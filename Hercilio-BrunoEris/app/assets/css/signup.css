@@ -2,7 +2,15 @@
   background-color: #fafafa;
   margin-top: 15px;
 }
-.alert{
-    max-width: 330px;
-    margin: auto;
+#output{
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+}
+#output .alert{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin: 0 auto;
+    max-width: 500px;
 }

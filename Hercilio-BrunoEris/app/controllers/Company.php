@@ -28,9 +28,16 @@ class Company extends Manipulator{
             $stmt->bind_param("sssssss", ucfirst($name), $location, $email, $telephone, $hashPassword, $cnpj, $address);
     		$stmt->execute();
             if($stmt->affected_rows != 1){
-                global $errorSTMT;
-                $errorSTMT = $stmt->error;
-                return $_GET['status'] = "73746d74";
+                if($stmt->sqlstate == 23000){$errorSTMT = "Violação de integridade identificada";}
+                if(strpos($stmt->error, "comp_email")){$errorSTMT .= " (e-mail)";}
+                if(strpos($stmt->error, "comp_cnpj")){$errorSTMT .= " (CNPJ)";}
+                if($stmt->errno == 1062){$errorSTMT .= "<br>Talvez sua empresa já tenha cadastro.";}
+                echo '
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    '.$errorSTMT.' <abbr title="'.$stmt->error.'">Detahes</abbr>
+                </div>';
+                exit;
             }
             else{
                 return true;
@@ -95,12 +102,12 @@ class Company extends Manipulator{
             // Check if file is an image
             if(strstr('.jpg;.jpeg;.gif;.png', $extension)){
                 $outputFilename = md5($this->_cnpj).$extension; // Set filename as an MD5 crypt of company's CNPJ
-                $target = "../../assets/img/company/";
+                $target = '../assets/img/company/'; // Define target to move the uploaded image
+                if (!is_dir($target)) {
+                    mkdir($target, 0777, true);
+                }
                 chmod($target, 0777);
                 $target = $target.$outputFilename; // Define target to move the uploaded image
-                if (!file_exists('../../assets/img/company')) {
-                    mkdir('../../assets/img/company', 0777, true);
-                }
 
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
@@ -115,7 +122,11 @@ class Company extends Manipulator{
                         return $_GET['status'] = "73746d74";
                     }
                     else{
-                        header('location: login.php?status=7369676e75702073756363657373');
+                        echo '
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            Cadastro de <b>'.$this->_name.'</b> efetuado com sucesso!
+                        </div>';
                     }
                 }
                 else{

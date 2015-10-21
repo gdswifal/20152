@@ -35,13 +35,13 @@ class User extends Manipulator{
             // Check if file is an image
             if(strstr('.jpg;.jpeg;.gif;.png', $extension)){
                 $outputFilename = md5($this->_email).$extension; // Set filename as an MD5 crypt of user's id
-                $target = '../../assets/img/user/'; // Define target to move the uploaded image
+                $target = '../assets/img/user/'; // Define target to move the uploaded image
+                if (!is_dir($target)) {
+                    mkdir($target, 0777, true);
+                }
                 chmod($target, 0777);
                 $target = $target.$outputFilename;
 
-                if (!file_exists('../../assets/img/user')) {
-                    mkdir('../../assets/img/user', 0777, true);
-                }
 
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
@@ -56,7 +56,11 @@ class User extends Manipulator{
                         return $_GET['status'] = "73746d74";
                     }
                     else{
-                        header('location: login.php?status=7369676e75702073756363657373');
+                        echo '
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            Cadastro de <b>'.$this->_name.'</b> efetuado com sucesso!
+                        </div>';
                     }
                 }
                 else{
@@ -78,12 +82,15 @@ class User extends Manipulator{
         $stmt->bind_param("ssss", ucfirst($name), $email, preg_replace('/[^\d]+/', '', $telephone), $hashPassword);
 		$stmt->execute();
         if($stmt->affected_rows != 1){
-            echo "Erro: ".$stmt->error." (".$stmt->errno.")";
-            if(strpos($stmt->error,'Duplicate entry') !== false && strpos($stmt->error,'mail') !== false){
-                global $_email;
-                $_email = $email;
-                $_GET['status'] = "726570656174656420656d61696c";
-            }
+            if($stmt->sqlstate == 23000){$errorSTMT = "Violação de integridade identificada";}
+            if(strpos($stmt->error, "user_mail")){$errorSTMT .= " (e-mail)";}
+            if($stmt->errno == 1062){$errorSTMT .= "<br>Talvez você já tenha cadastro.";}
+            echo '
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                '.$errorSTMT.' <abbr title="'.$stmt->error.'">Detahes</abbr>
+            </div>';
+            exit;
         }
         else{
             return true;
