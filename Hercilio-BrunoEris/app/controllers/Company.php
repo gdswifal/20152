@@ -95,8 +95,10 @@ class Company extends Manipulator{
             // Check if file is an image
             if(strstr('.jpg;.jpeg;.gif;.png', $extension)){
                 $outputFilename = md5($this->_cnpj).$extension; // Set filename as an MD5 crypt of company's CNPJ
-                $target = '../../images/companyLogos/' . $outputFilename; // Define target to move the uploaded image
-
+                $target = "../../images/companyLogos/";
+                chmod($target, 0777);
+                $target = $target.$outputFilename; // Define target to move the uploaded image
+                
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
                     global $conn;
@@ -114,7 +116,7 @@ class Company extends Manipulator{
                     }
                 }
                 else{
-                    echo "Erro ao salvar a imagem.".move_uploaded_file($tempFile, $target);
+                    echo "Erro ao tentar salvar a imagem.";
                 }
             }
             else
