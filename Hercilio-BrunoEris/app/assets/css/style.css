@@ -1,13 +1,7 @@
-.logoCompany{
-    width: 100px;
-    margin-left: 60px;
+.logoCompany img{
+    width: 150px;
+    margin: auto;
 }
-/*.navbar-brand{
-    padding: 10px;
-}
-.navbar-brand img{
-    height: 34px;
-}*/
 .brand-main {
   margin-top: 2px;
 }
@@ -23,4 +17,14 @@
 }
 .user-search {
     margin-top: 19px;
+}
+#output{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+#output .alert{
+    width: 100%;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }

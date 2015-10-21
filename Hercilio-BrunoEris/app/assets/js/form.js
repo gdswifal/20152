@@ -17,3 +17,9 @@ function showRequest(formData, jqForm, options) {
 // post-submit callback
 function showResponse(responseText, statusText, xhr, $form)  {
 }
+
+$(document).ajaxComplete(function(){
+    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+        $(".alert").alert('close');
+    });
+});
