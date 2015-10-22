@@ -5,12 +5,14 @@
     <title>Pão na Mão</title>
     <link rel="stylesheet" href="../../assets/css/bootstrap.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="../../assets/css/signup.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="../../assets/css/style.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="../../assets/plugins/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 container-signup-user">
+                <h2 class="text-center"><img class="media-bar" src="../../assets/img/bread-512.png" alt="" /></h2>
                 <h1 class="text-center">Registre-se</h1><br>
                 <form id="formAjax" method="post" enctype="multipart/form-data" action="../../controllers/register.php">
                     <div class="form-group">

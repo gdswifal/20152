@@ -1,7 +1,13 @@
-.logoCompany img{
-    width: 150px;
-    margin: auto;
+.logoCompany{
+    width: 100px;
+    margin-left: 60px;
 }
+/*.navbar-brand{
+    padding: 10px;
+}
+.navbar-brand img{
+    height: 34px;
+}*/
 .brand-main {
   margin-top: 2px;
 }
@@ -18,13 +24,19 @@
 .user-search {
     margin-top: 19px;
 }
-#output{
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
+.empresa-txt {
+  color: #f39c12 !important;
 }
-#output .alert{
-    width: 100%;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+.cliente-txt {
+  color: #18bc9c !important;
+}
+.bg-index {
+  opacity: 0.8;
+  background-color: #fafafa;
+}
+.pao {
+  font-size: 50px;
+}
+.media-bar {
+  max-width: 50px;
 }
