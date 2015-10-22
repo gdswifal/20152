@@ -45,6 +45,42 @@ class User extends Manipulator{
 
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
+                    list($width, $height) = getimagesize($target);
+                    // horizontal rectangle
+                    if ($width > $height) {
+                        $square = $height;              // $square: square side length
+                        $offsetX = ($width - $height) / 2;  // x offset based on the rectangle
+                        $offsetY = 0;              // y offset based on the rectangle
+                    }
+                    // vertical rectangle
+                    elseif ($height > $width) {
+                        $square = $width;
+                        $offsetX = 0;
+                        $offsetY = ($height - $width) / 2;
+                    }
+                    // it's already a square
+                    else {
+                        $square = $width;
+                        $offsetX = $offsetY = 0;
+                    }
+                    list($width, $height) = getimagesize($target);
+
+                    $tempTarget = imagecreatetruecolor($square,$square);
+                    if(@imagecreatefromjpeg($target)){
+                        $tempImage = imagecreatefromjpeg($target);
+                        header("Content-Type: image/jpg");
+                    }elseif(@imagecreatefrompng($target)){
+                        $tempImage = imagecreatefrompng($target);
+                        header("Content-Type: image/png");
+                    }elseif(@imagecreatefromgif($target)){
+                        $tempImage = imagecreatefromgif($target);
+                        header("Content-Type: image/gif");
+                    }else{
+                        echo "Falha na conversão da imagem!";
+                    }
+                    imagecopyresampled($tempTarget, $tempImage, 0, 0, 0, 0, $square, $square, $width, $height);
+                    imagejpeg($tempTarget, $target, 100);
+
                     global $conn;
                     $stmt = $conn->prepare("UPDATE users SET user_profile_photo = ? WHERE user_email = ?");
                     $stmt->bind_param("ss", $outputFilename, $this->_email);
