@@ -148,6 +148,7 @@ class User extends Manipulator{
 
             if($result == 1){
                 echo "Acesso concedido.";
+                $this->_id = $id;
                 $this->_name = $name;
                 $this->_telephone = $telephone;
                 $this->_photo = $photo;
@@ -155,6 +156,27 @@ class User extends Manipulator{
             }
             else{
                 return false;
+            }
+        }
+	}
+
+    public function updatePerson($id, $name, $telephone){
+        if(!is_numeric($telephone)){
+            echo "<div class=\"alert alert-warning\">Telefone deve ter apenas dígitos numéricos.</div>";
+        }elseif(strlen($telephone) < 10 || strlen($telephone) > 11){
+            echo "<div class=\"alert alert-warning\">Telefone deve ter entre 10 e 11 dígitos (com DDD).</div>";
+        }else{
+            global $conn;
+            if ($stmt = $conn->prepare("UPDATE users SET user_name=?, user_telephone=? WHERE user_id=?")) {
+                $stmt->bind_param("ssi", $name, $telephone, $id);
+                $stmt->execute();
+                $result = $stmt->affected_rows;
+                echo ($result == 1) ? "<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Dados atualizados com sucesso!</div>" : "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\"><span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Você não alterou nenhum dado.</div>";
+                $_SESSION['name'] = $this->_name;
+                $_SESSION['telephone'] = $this->_telephone;
+            }
+            else{
+                echo "Falha na conexão: ".$conn->error;
             }
         }
 	}

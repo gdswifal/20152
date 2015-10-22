@@ -3,5 +3,5 @@ $('#submitModal').on('click', function (e) {
 })
 
 $('#atualizarDados').on('hidden.bs.modal', function (e) {
-    $("#content").load("admin.php");
+    $("#content").load("profile.php");
 })

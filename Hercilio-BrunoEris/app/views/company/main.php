@@ -32,7 +32,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="linkAjax" href="requests.php">Pedidos</a></li>
                                 <li><a class="linkAjax" href="products.php">Produtos</a></li>
-                                <li><a class="linkAjax" href="admin.php">Dados cadastrais</a></li>
+                                <li><a class="linkAjax" href="profile.php">Dados cadastrais</a></li>
                                 <li><a href="../../controllers/session.php?logout_comp=true">Sair</a></li>
                             </ul>
                         </li>

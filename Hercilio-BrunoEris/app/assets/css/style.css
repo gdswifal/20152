@@ -1,13 +1,9 @@
-.logoCompany{
-    width: 100px;
-    margin-left: 60px;
+.logoCompany img{
+    width: 50px;
+    margin: auto;
+    float: left;
+    margin-right: 10px;
 }
-/*.navbar-brand{
-    padding: 10px;
-}
-.navbar-brand img{
-    height: 34px;
-}*/
 .brand-main {
   margin-top: 2px;
 }
@@ -40,3 +36,15 @@
 .media-bar {
   max-width: 50px;
 }
+/*
+#output{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+#output .alert{
+    width: 100%;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+*/

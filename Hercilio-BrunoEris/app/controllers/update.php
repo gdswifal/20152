@@ -8,5 +8,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $company->_phrase = $_POST['phrase'];
         $company->updateCompany($company->_id, $company->_name, $company->_telephone, $company->_phrase);
     }
+    elseif(isset($_POST['user_id'])){
+        $person = new User($_POST['name'], $_SESSION['email'], $_POST['telephone'], NULL); //$name, $email, $telephone, $password
+        $person->_id = $_POST['user_id'];
+        $person->updatePerson($person->_id, $person->_name, $person->_telephone);
+    }
 }
 ?>

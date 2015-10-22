@@ -6,6 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $person = new User("", $_POST['useremail'], "", $_POST['password'], "", "");
         $result = $person->loginUser($person->_email, $person->_password);
         if($result == true){
+        	$_SESSION['id'] = $person->_id;
         	$_SESSION['name'] = $person->_name;
         	$_SESSION['email'] = $person->_email;
         	$_SESSION['telephone'] = $person->_telephone;
