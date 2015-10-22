@@ -21,6 +21,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 else{
                     $person->uploadFile($_FILES['image'], $_POST['MAX_FILE_SIZE']);
                 }
+                echo '<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Redirecionando...</div>';
+                echo "<meta http-equiv=\"refresh\" content=\"3;url=login.php\">";
             }
         }
     }
@@ -46,6 +48,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <br>Nenhuma imagem enviada.
                     </div>';
                 }
+                echo '<div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Redirecionando...</div>';
+                echo "<meta http-equiv=\"refresh\" content=\"3;url=login.php\">";
             }
         }
         else{
