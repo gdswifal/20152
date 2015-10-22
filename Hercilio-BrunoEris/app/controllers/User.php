@@ -45,6 +45,42 @@ class User extends Manipulator{
 
                 // Moving the file
                 if(@move_uploaded_file($tempFile, $target)){
+                    list($width, $height) = getimagesize($target);
+                    // horizontal rectangle
+                    if ($width > $height) {
+                        $square = $height;              // $square: square side length
+                        $offsetX = ($width - $height) / 2;  // x offset based on the rectangle
+                        $offsetY = 0;              // y offset based on the rectangle
+                    }
+                    // vertical rectangle
+                    elseif ($height > $width) {
+                        $square = $width;
+                        $offsetX = 0;
+                        $offsetY = ($height - $width) / 2;
+                    }
+                    // it's already a square
+                    else {
+                        $square = $width;
+                        $offsetX = $offsetY = 0;
+                    }
+                    list($width, $height) = getimagesize($target);
+
+                    $tempTarget = imagecreatetruecolor($square,$square);
+                    if(@imagecreatefromjpeg($target)){
+                        $tempImage = imagecreatefromjpeg($target);
+                        header("Content-Type: image/jpg");
+                    }elseif(@imagecreatefrompng($target)){
+                        $tempImage = imagecreatefrompng($target);
+                        header("Content-Type: image/png");
+                    }elseif(@imagecreatefromgif($target)){
+                        $tempImage = imagecreatefromgif($target);
+                        header("Content-Type: image/gif");
+                    }else{
+                        echo "Falha na conversão da imagem!";
+                    }
+                    imagecopyresampled($tempTarget, $tempImage, 0, 0, 0, 0, $square, $square, $width, $height);
+                    imagejpeg($tempTarget, $target, 100);
+
                     global $conn;
                     $stmt = $conn->prepare("UPDATE users SET user_profile_photo = ? WHERE user_email = ?");
                     $stmt->bind_param("ss", $outputFilename, $this->_email);
@@ -112,6 +148,7 @@ class User extends Manipulator{
 
             if($result == 1){
                 echo "Acesso concedido.";
+                $this->_id = $id;
                 $this->_name = $name;
                 $this->_telephone = $telephone;
                 $this->_photo = $photo;
@@ -119,6 +156,27 @@ class User extends Manipulator{
             }
             else{
                 return false;
+            }
+        }
+	}
+
+    public function updatePerson($id, $name, $telephone){
+        if(!is_numeric($telephone)){
+            echo "<div class=\"alert alert-warning\">Telefone deve ter apenas dígitos numéricos.</div>";
+        }elseif(strlen($telephone) < 10 || strlen($telephone) > 11){
+            echo "<div class=\"alert alert-warning\">Telefone deve ter entre 10 e 11 dígitos (com DDD).</div>";
+        }else{
+            global $conn;
+            if ($stmt = $conn->prepare("UPDATE users SET user_name=?, user_telephone=? WHERE user_id=?")) {
+                $stmt->bind_param("ssi", $name, $telephone, $id);
+                $stmt->execute();
+                $result = $stmt->affected_rows;
+                echo ($result == 1) ? "<div class=\"alert alert-success alert-dismissible\" role=\"alert\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Dados atualizados com sucesso!</div>" : "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\"><span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button> Você não alterou nenhum dado.</div>";
+                $_SESSION['name'] = $this->_name;
+                $_SESSION['telephone'] = $this->_telephone;
+            }
+            else{
+                echo "Falha na conexão: ".$conn->error;
             }
         }
 	}
