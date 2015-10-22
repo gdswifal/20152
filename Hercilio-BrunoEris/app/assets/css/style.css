@@ -1,20 +1,13 @@
-.logoCompany{
+.logo-company {
     width: 100px;
-    margin-left: 60px;
+    height: 100px;
 }
-/*.navbar-brand{
-    padding: 10px;
-}
-.navbar-brand img{
-    height: 34px;
-}*/
 .brand-main {
   margin-top: 2px;
 }
 .brand-pao {
     width: 30px;
     height: 30px;
-    /*border-radius: 50px;*/
 }
 .user-avatar {
     width: 34px;

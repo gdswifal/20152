@@ -37,7 +37,7 @@ function initialize() {
                 icon: '../../assets/img/bread.png'
             });
 
-            var conteudo = '<div><div class="logoCompany"><img src="../../assets/img/company/'+val.logo+'" alt="SEM FOTO"></div>'+
+            var conteudo = '<div><div><h4 class="text-center"><img class="logo-company" src="../../assets/img/company/'+val.logo+'" alt="SEM FOTO"></h4</div>'+
                               '<b><h4>'+val.nome+'</b></h6>'+
                               '<h6>Status: <b>Aberto</b></h6>'+
                               '<div class="define-width-list"></div>'+
