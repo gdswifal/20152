@@ -1,0 +1,46 @@
+<div class="row">
+  <form class="col s12" ng-submit="login()">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="text" ng-model="user.email" class="validate" >
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="password" type="password" class="validate"  ng-model="user.password">
+        <label for="password">Password</label>
+      </div>
+    </div>
+
+    </br></br>
+
+    <button class="waves-effect waves-light btn">
+      ENTRAR
+    </button>
+
+    <a class="waves-effect waves-light btn orange" ng-href="#/register">
+      REGISTRAR
+    </a>
+
+  </form>
+</div>
+
+<!--   <div class="list card">
+
+    <a href="#" class="item item-icon-left">
+      <i class="icon ion-home"></i>
+      <h4 >{{ alert.title }}</h4>
+      {{ alert.detail}}
+    </a>
+
+  </div>  -->
+
+<div class="row" ng-controller="SocialLoginCtrl">
+  </br></br>
+  <div class="row center">
+      <a id="download-button" class="btn-large waves-effect waves-light blue" ng-click="socialLogin('facebook')">ENTRE COM O FACEBOOK</a>
+  </div>
+</div>
+

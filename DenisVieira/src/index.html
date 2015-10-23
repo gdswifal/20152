@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>SIMPLE DESK</title>
+
+    <link href="lib/Materialize/dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  </head>
+  <body ng-app="myApp">
+
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">Navbar Link</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <br><br>
+        <h1 class="header center orange-text">SIMPLE DESK</h1>
+        <div class="row center">
+          <div ui-view></div>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+
+
+    <footer class="page-footer orange">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Company Bio</h5>
+            <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Settings</h5>
+            <ul>
+              <li><a class="white-text" href="#!">Link 1</a></li>
+              <li><a class="white-text" href="#!">Link 2</a></li>
+              <li><a class="white-text" href="#!">Link 3</a></li>
+              <li><a class="white-text" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Connect</h5>
+            <ul>
+              <li><a class="white-text" href="#!">Link 1</a></li>
+              <li><a class="white-text" href="#!">Link 2</a></li>
+              <li><a class="white-text" href="#!">Link 3</a></li>
+              <li><a class="white-text" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="https://github.com/fromdenisvieira">Denis Vieira</a>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- your app dependencies -->
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/Materialize/dist/js/materialize.min.js"></script>
+
+    <script src="lib/firebase/firebase.js"></script>
+    <script src="lib/angularfire/dist/angularfire.min.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <!-- your app scripts -->
+    <script src="app/app.js"></script>
+
+    <script src="app/modules/login/module.js"></script>
+    <script src="app/modules/login/controllers/LoginRetrieveCtrl.js"></script>
+    <script src="app/modules/login/controllers/SocialLoginCtrl.js"></script>
+    <script src="app/modules/login/services/AuthSvc.js"></script>
+    <script src="app/modules/login/services/SocialAuthSvc.js"></script>
+
+    <script src="app/modules/dashboard/module.js"></script>
+    <script src="app/modules/dashboard/controllers/DashboardRetrieveCtrl.js"></script>
+    <script src="app/modules/dashboard/controllers/LogoutCtrl.js"></script>
+
+    <script src="app/modules/register/module.js"></script>
+    <script src="app/modules/register/controllers/RegisterRetrieveCtrl.js"></script>
+    <script src="app/modules/register/controllers/UserCreateCtrl.js"></script>
+    <script src="app/modules/register/services/RegisterUserSvc.js"></script>
+
+
+
+
+
+  </body>
+</html>
