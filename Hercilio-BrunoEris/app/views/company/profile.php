@@ -91,7 +91,7 @@ $telephone = preg_replace($pattern_telephone, '($1) $2.$3', $_SESSION['telephone
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" id="submitUpdateForm" class="btn btn-primary" name="submit" value="Salvar alterações">
+                    <input type="submit" id="submitModal" class="btn btn-primary" name="submit" value="Salvar alterações">
                 </div>
             </form>
         </div>

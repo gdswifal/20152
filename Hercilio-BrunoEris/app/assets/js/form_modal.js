@@ -1,5 +1,5 @@
 // Update Form Modal
-$(document).on('click', "#submitUpdateForm", function(e){
+$(document).on('click', "#submitModal", function(e){
     $('#atualizarDados').modal('hide');
 })
 $(document).on('hidden.bs.modal', "#atualizarDados", function(e){
