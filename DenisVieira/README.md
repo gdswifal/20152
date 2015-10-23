@@ -1,6 +1,6 @@
 # `SIMPLE DESK`
 
-Simple app for help desk application .
+Simple help desk application .
 
 
 ## Install dependencies
