@@ -1,4 +1,4 @@
-<?php include_once("../../controllers/session.php"); ?>
+<?php include_once("../../controllers/session_company.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +33,7 @@
                                 <li><a class="linkAjax" href="requests.php">Pedidos</a></li>
                                 <li><a class="linkAjax" href="products.php">Produtos</a></li>
                                 <li><a class="linkAjax" href="profile.php">Dados cadastrais</a></li>
-                                <li><a href="../../controllers/session.php?logout_comp=true">Sair</a></li>
+                                <li><a href="../../controllers/session_company.php?logout=true">Sair</a></li>
                             </ul>
                         </li>
                     </ul>

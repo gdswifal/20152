@@ -26,8 +26,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             // Check if file is an image
             if(strstr('.jpg;.jpeg;.gif;.png', $extension)){
-                $outputFilename = md5($_SESSION['email']).$extension; // Set filename as an MD5 crypt of user's id
-                $target = '../assets/img/user/'; // Define target to move the uploaded image
+                $outputFilename = md5($_SESSION['cnpj']).$extension; // Set filename as an MD5 crypt of user's id
+                $target = '../assets/img/company/'; // Define target to move the uploaded image
                 if (!is_dir($target)) {
                     mkdir($target, 0777, true);
                 }
@@ -74,14 +74,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     imagejpeg($tempTarget, $target, 100);
 
                     global $conn;
-                    $stmt = $conn->prepare("UPDATE users SET user_profile_photo = ? WHERE user_email = ?");
-                    $stmt->bind_param("ss", $outputFilename, $_SESSION['email']);
-                    $conn->close();
+                    if ($stmt = $conn->prepare("UPDATE companies SET comp_logo=? WHERE comp_cnpj=?")) {
+                        $stmt->bind_param("ss", $outputFilename, $_SESSION['cnpj']);
+                        $stmt->execute();
+                        $result = $stmt->affected_rows;
+                        $_SESSION['photo'] = $outputFilename;
                         echo '
                         <div id="atualizarFoto" class="alert alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             Imagem atualizada com sucesso!
                         </div>';
+                    }
+                    else{
+                        echo "Falha na conexão: ".$conn->error;
+                    }
                 }
                 else{
                     echo "Erro ao salvar a imagem.".move_uploaded_file($tempFile, $target);

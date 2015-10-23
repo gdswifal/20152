@@ -1,19 +1,14 @@
 <?php
 include_once("../../controllers/DBConnect.php");
-include_once("../../controllers/session.php");
+include_once("../../controllers/session_user.php");
 $telephone = preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '($1) $2.$3', $_SESSION['telephone']);
 ?>
-<div class="row">
-    <div class="col-md-2 col-sm-2 col-md-offset-9 col-sm-offset-10 text-right">
-        <a class="btn btn-primary btn-block" role="button" data-toggle="modal" data-target="#atualizarDados">Editar</a>
-    </div>
-</div>
 <div class="row">
     <div class="col-md-4 col-sm-6 col-xs-12">
         <div id="outputPhoto"></div>
         <div class="text-center">
-            <img src="../../assets/img/user/<?php echo $_SESSION['photo'] ?>" class="avatar img-circle img-thumbnail" alt="avatar">
-            <form id="formPhoto" method="post" enctype="multipart/form-data" action="../../controllers/update_photo.php">
+            <img src="../../assets/img/user/<?php echo $_SESSION['photo'] ?>" class="profile-avatar img-circle img-thumbnail" alt="avatar">
+            <form id="formPhoto" method="post" enctype="multipart/form-data" action="../../controllers/update_user_photo.php">
                 <div class="form-group text-center">
                     <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                     <input class="btn btn-default" id="avatarInput" type="file" accept="image/*" name="image" required>
@@ -26,24 +21,31 @@ $telephone = preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '($1) $2.$3', $_SESSION['
         <h3>Informações Pessoais</h3>
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label class="col-lg-3 control-label">Nome:</label>
                 <div class="col-lg-8">
-                    <input class="form-control" value="<?php echo $_SESSION['name'];?>" type="text" readonly>
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                        <input class="form-control" value="<?php echo $_SESSION['name'];?>" type="text" readonly>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-3 control-label">E-mail:</label>
                 <div class="col-lg-8">
-                    <input class="form-control" value="<?php echo $_SESSION['email'];?>" type="text" readonly>
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                        <input class="form-control" value="<?php echo $_SESSION['email'];?>" type="text" readonly>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-3 control-label">Telefone:</label>
                 <div class="col-lg-8">
-                    <input class="form-control" value="<?php echo $telephone;?>" type="text" readonly>
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></div>
+                        <input class="form-control" value="<?php echo $telephone;?>" type="text" readonly>
+                    </div>
                 </div>
             </div>
         </form>
+        <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#atualizarDados">Editar</a>
     </div>
 </div>
 <div id="atualizarDados" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalUpdate" aria-hidden="true">

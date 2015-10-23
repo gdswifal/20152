@@ -1,6 +1,6 @@
 <?php
 include_once("../../controllers/DBConnect.php");
-include_once("../../controllers/session.php");
+include_once("../../controllers/session_company.php");
 
 function getProducts($companyId){
     global $conn;
@@ -21,9 +21,8 @@ function getProducts($companyId){
     }
 }
 ?>
-<div class="col-md-3"></div>
-<div class="col-md-6">
-    <a class="linkAjax btn btn-default" href="newProduct.php" role="button">Novo Produto</a>
+<div class="col-md-8 col-md-offset-2">
+    <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#newProduct">Novo Produto</a>
     <h1>Seus produtos</h1>
     <table class="table table-bordered">
         <thead>
@@ -40,4 +39,33 @@ function getProducts($companyId){
         </tbody>
     </table>
 </div>
-<div class="col-md-3"></div>
+<div id="newProduct" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalUpdate" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+                <h4 class="modal-title" id="modalUpdate">Cadastrar Produto</h4>
+            </div>
+            <form id="formAjax" action="../../controllers/update.php" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="comp_id" value="<?php echo $_SESSION['id'] ?>">
+                    <div class="form-group" id="half-line">
+                        <label for="InputName">Nome da Empresa</label>
+                        <input type="text" class="form-control" id="InputName" maxlength="255" name="name" value="<?php echo $_SESSION['name'] ?>">
+                    </div>
+                    <div class="form-group" id="half-line">
+                        <label for="InputTelephone">Telefone</label>
+                        <input type="text" class="form-control" id="InputTelephone" maxlength="11" name="telephone" value="<?php echo $_SESSION['telephone'] ?>">
+                    </div>
+                    <div class="form-group" id="half-line">
+                        <label for="InputPhrase">Frase</label>
+                        <input type="text" class="form-control" id="InputPhrase" maxlength="45" name="phrase" value="<?php echo $_SESSION['phrase'] ?>">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" id="submitModal" class="btn btn-primary" name="submit" value="Salvar alterações">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

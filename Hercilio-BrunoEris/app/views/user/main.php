@@ -1,4 +1,4 @@
-<?php include_once("../../controllers/session.php"); ?>
+<?php include_once("../../controllers/session_user.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,7 +37,7 @@
                     <li><a class="linkAjax" href="favorites.php">Favoritos</a></li>
                     <li><a class="linkAjax" href="profile.php">Perfil</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="../../controllers/session.php?logout_user=true">Sair</a></li>
+                  <li><a href="../../controllers/session_user.php?logout=true">Sair</a></li>
                 </ul>
               </li>
             </ul>

@@ -1,5 +1,8 @@
 <?php
 include_once("DBConnect.php");
+if(isset($_SESSION['id'])){
+    header('location: main.php');
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset($_POST['useremail'])){
@@ -11,8 +14,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         	$_SESSION['email'] = $person->_email;
         	$_SESSION['telephone'] = $person->_telephone;
         	$_SESSION['photo'] = (!isset($person->_photo)) ? 'avatar_default.png' : $person->_photo;
-        	$_SESSION['hora'] = date("H:i");
-        	$_SESSION['logged'] = true;
+        	$_SESSION['logged_user'] = true;
+            $_SESSION['LAST_ACTIVITY'] = time();
             header('location: main.php');
         }
         else{
@@ -32,8 +35,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         	$_SESSION['address'] = $company->_address;
         	$_SESSION['photo'] = $company->_logo;
         	$_SESSION['phrase'] = $company->_phrase;
-        	$_SESSION['hora'] = date("H:i");
-        	$_SESSION['logged'] = true;
+        	$_SESSION['logged_company'] = true;
+            $_SESSION['LAST_ACTIVITY'] = time();
             header('location: main.php');
         }
         else{

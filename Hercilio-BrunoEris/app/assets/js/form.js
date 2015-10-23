@@ -29,4 +29,7 @@ $(document).ajaxComplete(function(){
     $(".alert").fadeTo(2000, 500).slideUp(500, function(){
         $(".alert").alert('close');
     });
+    $('#atualizarFoto').on('closed.bs.alert', function (e) {
+        $(location).attr('href',"main.php");
+    })
 });
