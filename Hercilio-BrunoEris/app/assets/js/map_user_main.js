@@ -42,7 +42,7 @@ function initialize() {
                               '<h6>Status: <b>Aberto</b></h6>'+
                               '<div class="define-width-list"></div>'+
                               '<div class="list-group">'+
-                                '<a href="#" class="list-group-item  text-center active">'+
+                                '<a class="list-group-item text-center active link_ajax" href="newOrder.php?company='+val.id+'">'+
                                   'Efetuar Pedido'+
                                 '</a>'+
                                 '<div class="list-group-item">'+

@@ -77,15 +77,15 @@ $telephone = preg_replace($pattern_telephone, '($1) $2.$3', $_SESSION['telephone
             <form id="formAjax" action="../../controllers/update.php" method="post">
                 <div class="modal-body">
                     <input type="hidden" name="comp_id" value="<?php echo $_SESSION['id'] ?>">
-                    <div class="form-group" id="half-line">
+                    <div class="form-group" id="">
                         <label for="InputName">Nome da Empresa</label>
                         <input type="text" class="form-control" id="InputName" maxlength="255" name="name" value="<?php echo $_SESSION['name'] ?>">
                     </div>
-                    <div class="form-group" id="half-line">
+                    <div class="form-group" id="">
                         <label for="InputTelephone">Telefone</label>
                         <input type="text" class="form-control" id="InputTelephone" maxlength="11" name="telephone" value="<?php echo $_SESSION['telephone'] ?>">
                     </div>
-                    <div class="form-group" id="half-line">
+                    <div class="form-group" id="">
                         <label for="InputPhrase">Frase</label>
                         <input type="text" class="form-control" id="InputPhrase" maxlength="45" name="phrase" value="<?php echo $_SESSION['phrase'] ?>">
                     </div>

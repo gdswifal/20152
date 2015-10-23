@@ -33,9 +33,9 @@
                     &nbsp Olá, <?php echo $_SESSION['name'];?>! <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="linkAjax" href="orders.php">Meus Pedidos</a></li>
-                    <li><a class="linkAjax" href="favorites.php">Favoritos</a></li>
-                    <li><a class="linkAjax" href="profile.php">Perfil</a></li>
+                    <li><a class="link_ajax" href="orders.php">Meus Pedidos</a></li>
+                    <li><a class="link_ajax" href="favorites.php">Favoritos</a></li>
+                    <li><a class="link_ajax" href="profile.php">Perfil</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="../../controllers/session_user.php?logout=true">Sair</a></li>
                 </ul>
@@ -61,6 +61,9 @@
     <script src="../../assets/js/bootstrap.min.js"></script>
     <script async defe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBPlkMMoM8tjnpx5CE_uq0LkWII8Poc0w&callback=initialize"></script>
     <script src="../../assets/js/map_user_main.js"></script>
-    <script src="../../assets/js/linkAjax.js"></script>
+    <script src="../../assets/js/link_ajax.js"></script>
+    <script src="../../assets/js/jquery.form.min.js"></script>
+    <script src="../../assets/js/form.js"></script>
+    <script src="../../assets/js/form_modal.js"></script>
   </body>
 </html>

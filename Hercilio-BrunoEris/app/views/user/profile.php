@@ -58,11 +58,11 @@ $telephone = preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '($1) $2.$3', $_SESSION['
             <form id="formAjax" action="../../controllers/update.php" method="post">
                 <div class="modal-body">
                     <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'] ?>">
-                    <div class="form-group" id="half-line">
+                    <div class="form-group" id="">
                         <label for="InputName">Nome</label>
                         <input type="text" class="form-control" id="InputName" maxlength="255" name="name" value="<?php echo $_SESSION['name'] ?>">
                     </div>
-                    <div class="form-group" id="half-line">
+                    <div class="form-group" id="">
                         <label for="InputTelephone">Telefone</label>
                         <input type="text" class="form-control" id="InputTelephone" maxlength="11" name="telephone" value="<?php echo $_SESSION['telephone'] ?>">
                     </div>
@@ -74,6 +74,3 @@ $telephone = preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '($1) $2.$3', $_SESSION['
         </div>
     </div>
 </div>
-<script src="../../assets/js/jquery.form.min.js"></script>
-<script src="../../assets/js/form.js"></script>
-<script src="../../assets/js/form_modal.js"></script>

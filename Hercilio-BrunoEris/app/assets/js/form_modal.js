@@ -1,13 +1,23 @@
 // Update Form Modal
-$('#submitUpdateForm').on('click', function (e) {
+$(document).on('click', "#submitUpdateForm", function(e){
     $('#atualizarDados').modal('hide');
 })
-
-$('#atualizarDados').on('hidden.bs.modal', function (e) {
+$(document).on('hidden.bs.modal', "#atualizarDados", function(e){
     $("#content").load("profile.php");
 })
 
 // New Product Modal
-$('#submitNewProduct').on('click', function (e) {
+$(document).on('click', "#submitNewProduct", function(e){
     $('#newProduct').modal('hide');
 })
+$(document).on('hidden.bs.modal', "#newProduct", function(e){
+    $("#content").load("products.php");
+})
+
+// New Order Modal
+// $(document).on('click', "#submitNewOrder", function(e){
+//     $('#NewOrder').modal('hide');
+// })
+// $(document).on('hidden.bs.modal', "#NewOrder", function(e){
+//     $("#content").load("newOrder.php");
+// })

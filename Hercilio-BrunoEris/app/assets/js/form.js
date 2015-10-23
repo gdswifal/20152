@@ -32,4 +32,7 @@ $(document).ajaxComplete(function(){
     $('#atualizarFoto').on('closed.bs.alert', function (e) {
         $(location).attr('href',"main.php");
     })
+    $('#orderSuccess').on('closed.bs.alert', function (e) {
+        $("#content").load("orders.php");
+    })
 });

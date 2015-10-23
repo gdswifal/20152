@@ -30,9 +30,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opções <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="linkAjax" href="requests.php">Pedidos</a></li>
-                                <li><a class="linkAjax" href="products.php">Produtos</a></li>
-                                <li><a class="linkAjax" href="profile.php">Dados cadastrais</a></li>
+                                <li><a class="link_ajax" href="requests.php">Pedidos</a></li>
+                                <li><a class="link_ajax" href="products.php">Produtos</a></li>
+                                <li><a class="link_ajax" href="profile.php">Dados cadastrais</a></li>
                                 <li><a href="../../controllers/session_company.php?logout=true">Sair</a></li>
                             </ul>
                         </li>
@@ -45,7 +45,7 @@
     <div id="output"></div>
     <script src="../../assets/js/jquery-1.11.3.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/linkAjax.js"></script>
+    <script src="../../assets/js/link_ajax.js"></script>
     <script src="../../assets/js/alert.js"></script>
 </body>
 </html>
