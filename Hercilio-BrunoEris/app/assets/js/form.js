@@ -4,10 +4,17 @@ var options = {
     beforeSubmit:  showRequest,  // pre-submit callback
     success:       showResponse  // post-submit callback
 };
-
-// bind form using 'ajaxForm'
 $('#formAjax').ajaxForm(options);
+
+var photoSettings = {
+    target:        '#outputPhoto',   // target element(s) to be updated with server response
+    beforeSubmit:  showRequest,  // pre-submit callback
+    success:       showResponse  // post-submit callback
+};
+$('#formPhoto').ajaxForm(photoSettings);
+
 });
+
 // pre-submit callback
 function showRequest(formData, jqForm, options) {
     var queryString = $.param(formData);

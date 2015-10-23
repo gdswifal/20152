@@ -6,12 +6,9 @@ function checkSessionTimeout(){
     if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $timelimit)) {
         session_unset();     // unset $_SESSION variable for the run-time
         session_destroy();   // destroy session data in storage
-        echo "<div class=\"alert alert-info\" role=\"alert\">
-        <span class=\"glyphicon glyphicon-time\" aria-hidden=\"true\"></span>
-        <span class=\"sr-only\">Aviso:</span>
-        Sua sessão expirou por inatividade maior que ".gmdate("i", $timelimit)." minutos, favor efetuar novo login.
-        </div>";
+        echo "Sua sessão expirou por inatividade maior que ".gmdate("i", $timelimit)." minutos, favor efetuar novo login.";
         echo "<a href=\"login.php\" class=\"btn btn-default btn-lg\">Acessar novamente</a>";
+        header('Location: login.php?expired=1');
         exit;
     }
     else{
@@ -29,8 +26,7 @@ if(session_status() != 2){
 }
 
 if(@$_SESSION['logged'] != true){
-    echo "Acesso não autorizado.";
-    exit;
+    header('location: login.php');
 }
 
 /* Logouts */

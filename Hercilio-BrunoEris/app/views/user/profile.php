@@ -10,8 +10,16 @@ $telephone = preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '($1) $2.$3', $_SESSION['
 </div>
 <div class="row">
     <div class="col-md-4 col-sm-6 col-xs-12">
+        <div id="outputPhoto"></div>
         <div class="text-center">
             <img src="../../assets/img/user/<?php echo $_SESSION['photo'] ?>" class="avatar img-circle img-thumbnail" alt="avatar">
+            <form id="formPhoto" method="post" enctype="multipart/form-data" action="../../controllers/update_photo.php">
+                <div class="form-group text-center">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="500000">
+                    <input class="btn btn-default" id="avatarInput" type="file" accept="image/*" name="image" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar foto</button>
+            </form>
         </div>
     </div>
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">

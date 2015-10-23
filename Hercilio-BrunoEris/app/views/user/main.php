@@ -55,6 +55,7 @@
     <div class="container-fluid" id="content">
       <div id="map" style="height:600px;margin:auto;"></div>
     </div>
+    <div id="output"></div>
 
     <script src="../../assets/js/jquery-1.11.3.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
