@@ -1,17 +1,18 @@
 (function() {
 
-  angular.module('myApp', [
+  angular.module('simpledesk', [
 
     // App Components
 
     // App Modules
-    'myApp.login',
-    'myApp.dashboard',
-    'myApp.register',
+    'simpledesk.login'
+    , 'simpledesk.dashboard'
+    , 'simpledesk.register'
 
     // External Dependencies
-    'firebase',
-    'ui.router'
+    , 'firebase'
+    , 'ngAnimate'
+    , 'ui.router'
   ])
   .config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
 

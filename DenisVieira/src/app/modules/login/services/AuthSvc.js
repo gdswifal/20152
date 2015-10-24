@@ -2,14 +2,14 @@
 
 	'use strict';
 
-	angular.module('myApp.login.services')
+	angular.module('simpledesk.login.services')
 
-		.factory('AuthSvc',['$firebaseAuth','$q','$location',function($firebaseAuth,$q,$location){
+		.factory('AuthSvc',['$firebaseAuth','$q','$location','APP_SETTINGS',function($firebaseAuth,$q,$location,APP_SETTINGS){
 
 			var login = function(user){
 
-				var endPoint = 'https://ionic-sociallogin.firebaseio.com/';
-				var ref = new Firebase(endPoint);			
+				var endPoint = APP_SETTINGS.API_URL;
+				var ref = new Firebase(endPoint);
 
 				var retorno = $q.defer();
 
@@ -25,14 +25,14 @@
 				    // retorno.resolve(authData);
 
 				  }
-				});		
+				});
 
 				return retorno.promise;
 			}
 
-			return {			
+			return {
 				login: login
-			};			
+			};
 
 
 

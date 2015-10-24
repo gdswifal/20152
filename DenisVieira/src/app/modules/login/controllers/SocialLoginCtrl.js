@@ -3,28 +3,35 @@
 
 	'use strict';
 
-	angular.module('myApp.login.controllers')
+  angular.module('simpledesk.login.controllers').controller('SocialLoginCtrl', SocialLoginCtrl);
 
-		.controller('SocialLoginCtrl', ['$scope','SocialAuthSvc', function ($scope,SocialAuthSvc) {
+  SocialLoginCtrl.$inject = ['$scope','SocialAuthSvc','$rootScope', '$location', 'APP_SETTINGS'];
 
-			$scope.socialLogin = function(authMethod){
 
-			    SocialAuthSvc.$authWithOAuthRedirect(authMethod).then(function(authData){
+  function SocialLoginCtrl($scope, SocialAuthSvc, $rootScope, $location, APP_SETTINGS) {
 
-			    }).catch(function(error){
-			      if(error.code === 'TRANSPORT_UNAVAILABLE'){
-			        
-			        SocialAuthSvc.$authWithOAuthPopup(authMethod).then(function(authData){
 
-			        })
+  		$scope.socialLogin = function(authMethod){
 
-			      }else{
-			        console.log(error);
-			      }
+  		    SocialAuthSvc.$authWithOAuthRedirect(authMethod).then(function(authData){
 
-			    })
-		  	}
+  		    }).catch(function(error){
+  		      if(error.code === 'TRANSPORT_UNAVAILABLE'){
 
-		}]);
+  		        SocialAuthSvc.$authWithOAuthPopup(authMethod).then(function(authData){
+
+  		        })
+
+  		      }else{
+  		        console.log(error);
+  		      }
+
+  		    })
+  	  	}
+
+  }
 
 }());
+
+
+

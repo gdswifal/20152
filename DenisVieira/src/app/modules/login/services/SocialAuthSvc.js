@@ -2,11 +2,11 @@
 
 	'use strict';
 
-	angular.module('myApp.login.services')
+	angular.module('simpledesk.login.services')
 
-		.factory('SocialAuthSvc',['$firebaseAuth',function($firebaseAuth){
+		.factory('SocialAuthSvc',['$firebaseAuth','APP_SETTINGS',function($firebaseAuth,APP_SETTINGS){
 
-		  var endPoint = 'https://ionic-sociallogin.firebaseio.com/';
+		  var endPoint = APP_SETTINGS.API_URL;
 		  var usersRef = new Firebase(endPoint);
 
 		  return $firebaseAuth(usersRef);

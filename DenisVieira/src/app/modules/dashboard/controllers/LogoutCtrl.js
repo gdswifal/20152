@@ -2,16 +2,20 @@
 
 	'use strict';
 
-	angular.module('myApp.dashboard.controllers')
+  angular.module('simpledesk.dashboard.controllers').controller('LogoutCtrl', LogoutCtrl);
 
-		.controller('LogoutCtrl', ['$scope','SocialAuthSvc','$location', function ($scope,SocialAuthSvc,$location) {
-			
-			$scope.logout = function(){
-				SocialAuthSvc.$unauth(function(data){
-					console.log(data);
-				});
-			}
+  LogoutCtrl.$inject = ['$scope','SocialAuthSvc', '$rootScope', '$location', 'APP_SETTINGS'];
 
-		}]);
+  function LogoutCtrl($scope, SocialAuthSvc, $rootScope, $location, APP_SETTINGS) {
+
+  	$scope.logout = function(){
+  		SocialAuthSvc.$unauth(function(data){
+  			console.log(data);
+  		});
+  	}
+
+  }
 
 }());
+
+

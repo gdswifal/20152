@@ -2,23 +2,27 @@
 
 	'use strict';
 
-	angular.module('myApp.dashboard.controllers')
+	angular.module('simpledesk.dashboard.controllers').controller('DashboardRetrieveCtrl', DashboardRetrieveCtrl);
 
-		.controller('DashboardRetrieveCtrl', ['$scope','SocialAuthSvc','$location', function ($scope,SocialAuthSvc,$location) {
+	DashboardRetrieveCtrl.$inject = ['$scope', 'SocialAuthSvc','$rootScope', '$location', 'APP_SETTINGS'];
+
+	function DashboardRetrieveCtrl($scope, SocialAuthSvc,$rootScope, $location, APP_SETTINGS) {
 
 		    SocialAuthSvc.$onAuth(function(authData){
 		    	console.log(authData);
 			    if(authData === null){
-			      console.log("Usuário não autenticado");		  
+			      console.log("Usuário não autenticado");
 					$location.path('login');
 			    }
 			    else{
 			      console.log("Usuário está autenticado");
 			      //console.log(authData);
 			    }
-			    $scope.authData = authData;		    
-			});
+			    $scope.authData = authData;
+				});
 
-		}]);
+	}
 
 }());
+
+

@@ -2,17 +2,17 @@
 
     'use strict';
 
-    angular.module('myApp.dashboard.controllers',[]);
-    // angular.module('myApp.dashboard.services',[]);
-    // angular.module('myApp.dashboard.filters',[]);
-    // angular.module('myApp.dashboard.directives',[]);
+    angular.module('simpledesk.dashboard.controllers',[]);
+    // angular.module('simpledesk.dashboard.services',[]);
+    // angular.module('simpledesk.dashboard.filters',[]);
+    // angular.module('simpledesk.dashboard.directives',[]);
 
-    angular.module('myApp.dashboard', [
+    angular.module('simpledesk.dashboard', [
       'ui.router',
-      'myApp.dashboard.controllers'
-      //'myApp.dashboard.services',
-      // 'myApp.dashboard.filters',
-      // 'myApp.dashboard.directives',
+      'simpledesk.dashboard.controllers'
+      //'simpledesk.dashboard.services',
+      // 'simpledesk.dashboard.filters',
+      // 'simpledesk.dashboard.directives',
 
     ])
 

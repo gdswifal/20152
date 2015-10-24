@@ -1,24 +1,163 @@
-<div ng-if="authData.facebook" class="list card">
-  <div class="item item-avatar">
-    </br></br>
-    <img alt="Foto" ng-src="{{authData.facebook.profileImageURL}}">
-    <h2>{{ authData.facebook.displayName}}</h2>
-    <p>Facebook ID : {{ authData.facebook.id}}</p>
+
+
+
+<div class="row">
+  <div class="col s12 m12">
+    <nav class="orange lighten-1">
+      <div class="nav-wrapper">
+        <form>
+          <div class="input-field ">
+            <input id="search" type="search" required>
+            <label for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+        </form>
+      </div>
+    </nav>
   </div>
 </div>
 
-<div ng-if="authData.password" class="list card">
-  <div class="item item-avatar">
-    <img alt="Foto" ng-src="{{authData.password.profileImageURL}}">
-    <h2>{{ authData.password.email}}</h2>
-    <p>Facebook ID : </p>
-    <p>{{ authData.uid}}</p>
+
+<div class="row">
+
+  <div class="col s12 m6 l4 ">
+    <div class="card hoverable small">
+       <div class="card-image waves-effect waves-block waves-light">
+         <img class="activator" src="assets/img/sample-1.jpg">
+       </div>
+       <div class="card-content">
+         <span class="card-title activator grey-text text-darken-4">CPU<i class="material-icons right">more_vert</i></span>
+       </div>
+       <div class="card-action">
+        <a href="#">VER PROBLEMAS E SOLUÇÕES</a>
+       </div>
+       <div class="card-reveal">
+         <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+         <p>Here is some more information about this product that is only revealed once clicked on.</p>
+       </div>
+     </div>
   </div>
+
+  <div class="col s12 m6 l4 ">
+    <div class="card hoverable small">
+       <div class="card-image waves-effect waves-block waves-light">
+         <img class="activator" src="assets/img/sample-1.jpg">
+       </div>
+       <div class="card-content">
+         <span class="card-title activator grey-text text-darken-4">IMPRESSORA<i class="material-icons right">more_vert</i></span>
+       </div>
+       <div class="card-action">
+        <a href="#">VER PROBLEMAS E SOLUÇÕES</a>
+       </div>
+       <div class="card-reveal">
+         <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+         <p>Here is some more information about this product that is only revealed once clicked on.</p>
+       </div>
+     </div>
+  </div>
+
+  <div class="col s12 m6 l4 ">
+    <div class="card hoverable small">
+       <div class="card-image waves-effect waves-block waves-light">
+         <img class="activator" src="assets/img/sample-1.jpg">
+       </div>
+       <div class="card-content">
+         <span class="card-title activator grey-text text-darken-4">INTERNET<i class="material-icons right">more_vert</i></span>
+       </div>
+       <div class="card-action">
+        <a href="#">VER PROBLEMAS E SOLUÇÕES</a>
+       </div>
+       <div class="card-reveal">
+         <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+         <p>Here is some more information about this product that is only revealed once clicked on.</p>
+       </div>
+     </div>
+  </div>
+
+  <div class="col s12 m6 l4 ">
+    <div class="card hoverable small">
+       <div class="card-image waves-effect waves-block waves-light">
+         <img class="activator" src="assets/img/sample-1.jpg">
+       </div>
+       <div class="card-content">
+         <span class="card-title activator grey-text text-darken-4">PERIFÉRICO<i class="material-icons right">more_vert</i></span>
+       </div>
+       <div class="card-action">
+        <a href="#">VER PROBLEMAS E SOLUÇÕES</a>
+       </div>
+       <div class="card-reveal">
+         <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+         <p>Here is some more information about this product that is only revealed once clicked on.</p>
+       </div>
+     </div>
+  </div>
+
+  <div class="col s12 m6 l4 ">
+    <div class="card hoverable small">
+       <div class="card-image waves-effect waves-block waves-light">
+         <img class="activator" src="assets/img/sample-1.jpg">
+       </div>
+       <div class="card-content">
+         <span class="card-title activator grey-text text-darken-4">SISTEMA<i class="material-icons right">more_vert</i></span>
+       </div>
+       <div class="card-action">
+        <a href="#">VER PROBLEMAS E SOLUÇÕES</a>
+       </div>
+       <div class="card-reveal">
+         <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+         <p>Here is some more information about this product that is only revealed once clicked on.</p>
+       </div>
+     </div>
+  </div>
+
+  <div class="col s12 m6 l4 ">
+    <div class="card hoverable small">
+       <div class="card-image waves-effect waves-block waves-light">
+         <img class="activator" src="assets/img/sample-1.jpg">
+       </div>
+       <div class="card-content">
+         <span class="card-title activator grey-text text-darken-4">PROCEDIMENTO<i class="material-icons right">more_vert</i></span>
+       </div>
+       <div class="card-action">
+        <a href="#">VER PROBLEMAS E SOLUÇÕES</a>
+       </div>
+       <div class="card-reveal">
+         <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+         <p>Here is some more information about this product that is only revealed once clicked on.</p>
+       </div>
+     </div>
+  </div>
+
+
+
+
 </div>
 
-<span ng-controller="LogoutCtrl">
- 	<button class="waves-effect waves-light btn red" ng-click="logout()">
-  		LOGOUT
-	</button>
-</span>
 
+  <br/><br/>
+
+  <div ng-if="authData.facebook" class="list card">
+    <div class="item item-avatar">
+      </br></br>
+      <img alt="Foto" ng-src="{{authData.facebook.profileImageURL}}">
+      <h2>{{ authData.facebook.displayName}}</h2>
+      <p>Facebook ID : {{ authData.facebook.id}}</p>
+    </div>
+  </div>
+
+  <div ng-if="authData.password" class="list card">
+    <div class="item item-avatar">
+      <img alt="Foto" ng-src="{{authData.password.profileImageURL}}">
+      <h2>{{ authData.password.email}}</h2>
+      <p>Facebook ID : </p>
+      <p>{{ authData.uid}}</p>
+    </div>
+  </div>
+
+  <span ng-controller="LogoutCtrl">
+   	<button class="waves-effect waves-light btn red" ng-click="logout()">
+    		LOGOUT
+  	</button>
+  </span>
+
+</div>

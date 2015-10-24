@@ -2,16 +2,16 @@
 
   'use strict';
 
-  angular.module('myApp.register.controllers',[]);
-  angular.module('myApp.register.services',[]);
-  // angular.module('myApp.register.filters',[]);
-  // angular.module('myApp.register.directives',[]);
+  angular.module('simpledesk.register.controllers',[]);
+  angular.module('simpledesk.register.services',[]);
+  // angular.module('simpledesk.register.filters',[]);
+  // angular.module('simpledesk.register.directives',[]);
 
-  angular.module('myApp.register', [
-    'myApp.register.controllers',
-    'myApp.register.services',
-    // 'myApp.register.filters',
-    // 'myApp.register.directives',
+  angular.module('simpledesk.register', [
+    'simpledesk.register.controllers',
+    'simpledesk.register.services',
+    // 'simpledesk.register.filters',
+    // 'simpledesk.register.directives',
     'ui.router'
   ])
   .config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {

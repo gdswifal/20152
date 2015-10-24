@@ -2,12 +2,15 @@
 
 	'use strict';
 
-	angular.module('myApp.register.controllers')
+  angular.module('simpledesk.register.controllers').controller('RegisterRetrieveCtrl', RegisterRetrieveCtrl);
 
-	  .controller('RegisterRetrieveCtrl', ['$scope','RegisterUserSvc', function ($scope,RegisterUserSvc) {
+  RegisterRetrieveCtrl.$inject = ['$scope', '$rootScope', '$location', 'APP_SETTINGS'];
 
-			$scope.falhou = false;
-	    
-	  }]);
+  function RegisterRetrieveCtrl($scope, $rootScope, $location, APP_SETTINGS) {
+
+  	$scope.falhou = false;
+  }
 
 }());
+
+

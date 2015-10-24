@@ -2,16 +2,16 @@
 
     'use strict';
 
-    angular.module('myApp.login.controllers',[]);
-    angular.module('myApp.login.services',[]);
-    // angular.module('myApp.login.filters',[]);
-    // angular.module('myApp.login.directives',[]);
+    angular.module('simpledesk.login.controllers',[]);
+    angular.module('simpledesk.login.services',[]);
+    // angular.module('simpledesk.login.filters',[]);
+    // angular.module('simpledesk.login.directives',[]);
 
-    angular.module('myApp.login', [
-      'myApp.login.controllers',
-      'myApp.login.services',
-      // 'myApp.login.filters',
-      // 'myApp.login.directives',
+    angular.module('simpledesk.login', [
+      'simpledesk.login.controllers',
+      'simpledesk.login.services',
+      // 'simpledesk.login.filters',
+      // 'simpledesk.login.directives',
       'ui.router'
     ])
 

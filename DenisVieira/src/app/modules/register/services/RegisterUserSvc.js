@@ -2,14 +2,14 @@
 
 	'use strict';
 
-	angular.module('myApp.register.services')
+	angular.module('simpledesk.register.services')
 
-		.factory('RegisterUserSvc',['$firebaseAuth','$q','$location',function($firebaseAuth,$q,$location){
+		.factory('RegisterUserSvc',['$firebaseAuth','$q','$location','APP_SETTINGS',function($firebaseAuth,$q,$location,APP_SETTINGS){
 
 			var create = function(user){
 
-				var endPoint = 'https://ionic-sociallogin.firebaseio.com';
-				var ref = new Firebase(endPoint);			
+				var endPoint = APP_SETTINGS.API_URL;
+				var ref = new Firebase(endPoint);
 
 				var retorno = $q.defer();
 
@@ -32,10 +32,10 @@
 					        break;
 					      default:
 					        console.log("Error logging user in:", error);
-					    }				    
+					    }
 				  } else {
 
-				  
+
 			  	    ref.child("users").child(authData.uid).set({
 				      provider: 'password',
 				      name: user.name,
@@ -47,17 +47,17 @@
 				    		$location.path('login');
 				    	}
 				    });
-				    
-				    
+
+
 				  }
-				});	
+				});
 
 				return retorno.promise;
 			}
 
 
 
-			return {			
+			return {
 				create: create
 			};
 

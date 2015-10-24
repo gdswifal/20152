@@ -2,28 +2,33 @@
 
 	'use strict';
 
-	angular.module('myApp.register.controllers')
+  angular.module('simpledesk.register.controllers').controller('UserCreateCtrl', UserCreateCtrl);
 
-	  .controller('UserCreateCtrl', ['$scope','RegisterUserSvc', function ($scope,RegisterUserSvc) {
+  UserCreateCtrl.$inject = ['$scope','RegisterUserSvc', '$rootScope', '$location', 'APP_SETTINGS'];
 
-			$scope.createUser = function() {
+  function UserCreateCtrl($scope, RegisterUserSvc, $rootScope, $location, APP_SETTINGS) {
 
-		    	RegisterUserSvc.create($scope.user).then(function(data){
+  			$scope.createUser = function() {
 
-		    		// console.log("Promise = "+data);
+  		    	RegisterUserSvc.create($scope.user).then(function(data){
 
-				      //$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-				      //$scope.setCurrentUser(user);
-			    }, function (error) {
-			  
-			    });	    	    	 
-			}  	
+  		    		// console.log("Promise = "+data);
 
-	    	$scope.alert = {
-	    		'title': 'error.code',
-	    		'detail': 'error.message'
-	    	};					
-	    
-	  }]);
+  				      //$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+  				      //$scope.setCurrentUser(user);
+  			    }, function (error) {
+
+  			    });
+  			}
+
+  	    	$scope.alert = {
+  	    		'title': 'error.code',
+  	    		'detail': 'error.message'
+  	    	};
+
+  }
 
 }());
+
+
+
