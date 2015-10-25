@@ -97,6 +97,7 @@ $telephone = preg_replace($pattern_telephone, '($1) $2.$3', $_SESSION['telephone
         </div>
     </div>
 </div>
+<script src="../../assets/js/alert.js"></script>
 <script src="../../assets/js/jquery.form.min.js"></script>
 <script src="../../assets/js/form.js"></script>
 <script src="../../assets/js/form_modal.js"></script>

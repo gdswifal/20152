@@ -29,7 +29,7 @@ function getProduct($productId){
 $product = getProduct($_GET['product']);
 echo '<div class="col-md-6 col-md-offset-3">';
 echo '<a class="btn btn-default link_ajax" href="newOrder.php?company='.$_GET['company'].'">Cancelar</a>';
-echo '<form id="formAjax" action="../../controllers/newOrderConfirm.php" method="post">
+echo '<form id="formOrder" action="../../controllers/newOrderConfirm.php" method="post">
         <input type="hidden" name="user_id" value="'.$_SESSION['id'].'">
         <input type="hidden" name="comp_id" value="'.$_GET['company'].'">
         <input type="hidden" name="prod_id" value="'.$product['id'].'">

@@ -74,6 +74,7 @@ $telephone = preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '($1) $2.$3', $_SESSION['
         </div>
     </div>
 </div>
+<script src="../../assets/js/alert.js"></script>
 <script src="../../assets/js/jquery.form.min.js"></script>
 <script src="../../assets/js/form.js"></script>
 <script src="../../assets/js/form_modal.js"></script>

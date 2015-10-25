@@ -62,8 +62,8 @@
     <script async defe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBPlkMMoM8tjnpx5CE_uq0LkWII8Poc0w&callback=initialize"></script>
     <script src="../../assets/js/map_user_main.js"></script>
     <script src="../../assets/js/link_ajax.js"></script>
-    <script src="../../assets/js/jquery.form.min.js"></script>
+    <!-- <script src="../../assets/js/jquery.form.min.js"></script>
     <script src="../../assets/js/form.js"></script>
-    <script src="../../assets/js/form_modal.js"></script>
+    <script src="../../assets/js/form_modal.js"></script> -->
   </body>
 </html>
