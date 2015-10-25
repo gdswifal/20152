@@ -1,4 +1,7 @@
 <div class="row center">
+
+  <h1 class="header center orange-text">SIMPLE DESK</h1>
+
   <form class="col s12" ng-submit="login()">
 
     <div class="row">
@@ -37,10 +40,13 @@
 
   </div>  -->
 
-<div class="row" ng-controller="SocialLoginCtrl">
-  </br></br>
-  <div class="row center">
-      <a id="download-button" class="btn-large waves-effect waves-light blue" ng-click="socialLogin('facebook')">ENTRE COM O FACEBOOK</a>
-  </div>
+<div class="row center" ng-controller="SocialLoginCtrl">
+    <button class="btn-large waves-effect waves-light blue darken-4" ng-click="socialLogin('facebook')"><i class="fa fa-facebook-official"></i></button>
+    <button class="btn-large waves-effect waves-light red" ng-click="socialLogin('facebook')"><i class="fa fa-google-plus"></i></button>
+    <button class="btn-large waves-effect waves-light blue" ng-click="socialLogin('facebook')"><i class="fa fa-twitter-square"></i></button>
+</div>
+
+<div class="row center">
+  <a href="#!">PODEMOS AJUDAR ?</a>
 </div>
 

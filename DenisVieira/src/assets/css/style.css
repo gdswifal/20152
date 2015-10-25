@@ -1,0 +1,49 @@
+.filter-contrast {
+    -webkit-filter: contrast(4);
+    filter: contrast(4);
+}
+
+.filter-blur {
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.filter-sepia {
+    -webkit-filter: sepia(1);
+    filter: sepia(1);
+}
+
+.filter-grayscale {
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.filter-brightness {
+    -webkit-filter: brightness(2);
+    filter: brightness(2);
+}
+
+.filter-drop-shadow {
+    -webkit-filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, .7));
+    filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, .7));
+}
+
+.filter-hue-rotate {
+    -webkit-filter: hue-rotate(90deg);
+    filter: hue-rotate(90deg);
+}
+
+.filter-invert {
+    -webkit-filter: invert(.3);
+    filter: invert(.3);
+}
+
+.filter-brightness {
+    -webkit-filter: brightness(2);
+    filter: brightness(2);
+}
+
+.filter-opacity {
+    -webkit-filter: opacity(.5);
+    filter: opacity(.5);
+}

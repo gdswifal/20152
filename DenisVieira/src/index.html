@@ -7,11 +7,14 @@
 
     <link href="lib/Materialize/dist/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
 
   </head>
   <body ng-app="simpledesk">
+
+
 
   <div class="navbar-fixed">
     <nav class="light-blue lighten-1" role="navigation" ng-hide="state.name == 'login'">
@@ -19,23 +22,33 @@
         <a href="#" class="brand-logo center">SIMPLE DESK</a>
 
         <ul id="slide-out" class="right side-nav">
-            <li><a href="#!">First Sidebar Link</a></li>
-            <li><a href="#!">Second Sidebar Link</a></li>
+            <li><a href="#!"><span class="fa fa-home"></span> &nbsp Dashboard</a></li>
+            <li><a href="#!"><span class="fa fa-search-plus"></span>&nbsp Procurar Solução</a></li>
+            <li><a href="#!"><span class="fa fa-eye"></span>&nbsp Meus Chamados</a></li>
+            <li><a href="#!"><span class="fa fa-retweet"></span>&nbsp Soluções Constantes</a></li>
+            <li><a href="#!"><span class="fa fa-wrench"></span>&nbsp Abrir um Chamado</a></li>
+            <li><a href="#!"><span class="fa fa-graduation-cap"></span>&nbsp Como Usar</a></li>
+            <li><a href="#!"><span class="fa fa-globe"></i>&nbsp Sobre Nós</a></li>
         </ul>
 
-        <!-- Dropdown Structure -->
-        <ul id="dropdown1" class="dropdown-content">
-          <li><a href="#!">one</a></li>
-          <li><a href="#!">two</a></li>
+        <ul id="dropdown2" class="dropdown-content">
+          <li><a href="#!">Editar Perfil</a></li>
           <li class="divider"></li>
           <li class="red" ng-controller="LogoutCtrl" ng-click="logout()"><a href="#!" class="white-text">LOGOUT</a></li>
         </ul>
 
         <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
 
+        <ul id="dropdown1" class="dropdown-content">
+          <li><a href="#!">Notificações de Informações do<span class="new badge">1</span></a></li>
+          <li><a href="#!">Notificações sobre Chamado<span class="new badge">1</span></a></li>
+          <li><a href="#!">Notificações sobre Solução<span class="new badge">3</span></a></li>
+        </ul>
 
         <ul class="right">
-          <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons">perm_identity</i></a></li>
+
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1"> <span class="fa fa-bell"></span> <span class="new badge red">4</span></a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown2"><i class="material-icons">settings</i></a></li>
         </ul>
 
 
