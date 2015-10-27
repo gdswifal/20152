@@ -1,4 +1,4 @@
-$(document).on('click', ".linkAjax", function(){
+$(document).on('click', ".link_ajax", function(){
 	var link = $(this).attr("href");
 	if(link != "#"){
 	    $("#content").load(link, function( response, status, xhr ) {

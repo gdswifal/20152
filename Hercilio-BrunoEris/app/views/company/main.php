@@ -1,4 +1,4 @@
-<?php include_once("../../controllers/session.php"); ?>
+<?php include_once("../../controllers/session_company.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,11 +33,11 @@
                     &nbsp Olá, <?php echo $_SESSION['name'];?>! <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="linkAjax" href="requests.php">Pedidos</a></li>
-                  <li><a class="linkAjax" href="products.php">Produtos</a></li>
-                  <li><a class="linkAjax" href="profile.php">Dados cadastrais</a></li>
+                  <li><a class="link_ajax" href="requests.php">Pedidos</a></li>
+                  <li><a class="link_ajax" href="products.php">Produtos</a></li>
+                  <li><a class="link_ajax" href="profile.php">Dados cadastrais</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="../../controllers/session.php?logout_comp=true">Sair</a></li>
+                  <li><a href="../../controllers/session_company.php?logout=true">Sair</a></li>
                 </ul>
               </li>
             </ul>
@@ -46,13 +46,16 @@
       </nav>
     </header>
 
-
     <div class="container-fluid" id="content"></div>
     <div id="output"></div>
 
     <script src="../../assets/js/jquery-1.11.3.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/linkAjax.js"></script>
+    <script src="../../assets/js/link_ajax.js"></script>
     <script src="../../assets/js/alert.js"></script>
+
+    <!-- <script src="../../assets/js/jquery.form.min.js"></script>
+    <script src="../../assets/js/form.js"></script>
+    <script src="../../assets/js/form_modal.js"></script> -->
 </body>
 </html>

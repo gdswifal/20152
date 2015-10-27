@@ -39,7 +39,12 @@
 .media-bar {
   max-width: 50px;
 }
-/*
+.profile-avatar{
+    width: 50%;
+}
+#avatarInput{
+  margin: auto;
+}/*
 #output{
     position: fixed;
     bottom: 0px;
