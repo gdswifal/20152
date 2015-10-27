@@ -4742,6 +4742,67 @@ fieldset[disabled] .navbar-inverse .btn-link:hover,
 fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #cccccc;
 }
+
+.navbar-company {
+  background-color: #f39c12;
+  border-color: #d48b18;
+}
+.navbar-company .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-company .navbar-brand:hover, .navbar-company .navbar-brand:focus {
+  color: #e7e7e7;
+}
+.navbar-company .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-company .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-company .navbar-nav > li > a:hover, .navbar-company .navbar-nav > li > a:focus {
+  color: #000;
+}
+.navbar-company .navbar-nav > .active > a, .navbar-company .navbar-nav > .active > a:hover, .navbar-company .navbar-nav > .active > a:focus {
+  color: #e7e7e7;
+  background-color: #d48b18;
+}
+.navbar-company .navbar-nav > .open > a, .navbar-company .navbar-nav > .open > a:hover, .navbar-company .navbar-nav > .open > a:focus {
+  color: #e7e7e7;
+  background-color: #d48b18;
+}
+.navbar-company .navbar-toggle {
+  border-color: #d48b18;
+}
+.navbar-company .navbar-toggle:hover, .navbar-company .navbar-toggle:focus {
+  background-color: #d48b18;
+}
+.navbar-company .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-company .navbar-collapse,
+.navbar-company .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-company .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-company .navbar-link:hover {
+  color: #e7e7e7;
+}
+
+@media (max-width: 767px) {
+  .navbar-company .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-company .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-company .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #e7e7e7;
+  }
+  .navbar-company .navbar-nav .open .dropdown-menu > .active > a, .navbar-company .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-company .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #e7e7e7;
+    background-color: #d48b18;
+  }
+}
+
 .breadcrumb {
   padding: 8px 15px;
   margin-bottom: 21px;

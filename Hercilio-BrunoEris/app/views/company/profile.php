@@ -8,7 +8,7 @@ $telephone = preg_replace($pattern_telephone, '($1) $2.$3', $_SESSION['telephone
 ?>
 <div class="col-md-12">
     <div class="col-md-4">
-        <img src="../../assets/img/company/<?php echo $_SESSION['photo'] ?>" alt="<?php echo $_SESSION['name'] ?>" class="img-thumbnail">
+        <img class="brand-img-company" src="../../assets/img/company/<?php echo $_SESSION['photo'] ?>" alt="<?php echo $_SESSION['name'] ?>" class="img-thumbnail">
     </div>
     <div class="col-md-8">
         <h1>Cadastro de <?php echo $_SESSION['name'] ?></h1>

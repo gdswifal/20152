@@ -4,11 +4,6 @@ include_once("../../controllers/session.php");
 $telephone = preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '($1) $2.$3', $_SESSION['telephone']);
 ?>
 <div class="row">
-    <div class="col-md-2 col-sm-2 col-md-offset-9 col-sm-offset-10 text-right">
-        <a class="btn btn-primary btn-block" role="button" data-toggle="modal" data-target="#atualizarDados">Editar</a>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-4 col-sm-6 col-xs-12">
         <div class="text-center">
             <img src="../../assets/img/user/<?php echo $_SESSION['photo'] ?>" class="avatar img-circle img-thumbnail" alt="avatar">
@@ -36,6 +31,12 @@ $telephone = preg_replace('/(\d{2})(\d{4,5})(\d{4})/', '($1) $2.$3', $_SESSION['
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 col-sm-2 col-md-offset-9 col-sm-offset-10 text-right">
+        <a class="btn btn-info btn-block" role="button" data-toggle="modal" data-target="#atualizarDados">Editar</a>
+        <a href="" class="btn btn-primary btn-link">Voltar</a>
     </div>
 </div>
 <div id="atualizarDados" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalUpdate" aria-hidden="true">

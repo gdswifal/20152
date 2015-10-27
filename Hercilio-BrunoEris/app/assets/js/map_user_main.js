@@ -8,12 +8,12 @@ function initialize() {
       directionsService = new google.maps.DirectionsService();
 
   map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -9.654576, lng: -35.711623},
+      center: {lat: -9.6655325, lng: -35.7324382},
       zoom: 16
   });
 
   var marker = new google.maps.Marker({
-      position: {lat: -9.654576, lng: -35.711623},
+      position: {lat: -9.6655325, lng: -35.7324382},
       map: map
   });
 

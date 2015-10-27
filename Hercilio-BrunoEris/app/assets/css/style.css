@@ -11,6 +11,10 @@
     width: 30px;
     height: 30px;
 }
+.brand-img-company {
+  max-width: 300px;
+  max-height: 300px;
+}
 .user-avatar {
     width: 34px;
     height: 34px;
