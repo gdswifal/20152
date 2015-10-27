@@ -33,7 +33,7 @@
                     &nbsp Olá, <?php echo $_SESSION['name'];?>! <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="link_ajax" href="requests.php">Pedidos</a></li>
+                  <li><a class="link_ajax" href="orders.php">Pedidos</a></li>
                   <li><a class="link_ajax" href="products.php">Produtos</a></li>
                   <li><a class="link_ajax" href="profile.php">Dados cadastrais</a></li>
                   <li role="separator" class="divider"></li>
