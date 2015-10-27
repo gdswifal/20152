@@ -44,7 +44,11 @@
 }
 #avatarInput{
   margin: auto;
-}/*
+}
+.alert-modal{
+    margin-bottom: 0;
+}
+/*
 #output{
     position: fixed;
     bottom: 0px;

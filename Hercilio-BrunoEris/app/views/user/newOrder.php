@@ -77,8 +77,7 @@ $company = getCompany($_GET['company']);
         </div>
     </div>
     <div class="col-md-10">
-        <!-- <a class="btn btn-primary" role="button" data-toggle="modal" data-target="#newProduct">Novo Produto</a> -->
-        <a class="link_ajax" href="newOrder.php?company=<?php echo $_GET['company']?>">Refresh</a>
+        <a class="btn btn-default" href="../../controllers/newFavorite.php?company=<?php echo $_GET['company']?>&user=<?php echo $_SESSION['id']?>" data-toggle="modal" data-target="#favorite"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Adicionar aos favoritos</a>
         <h1>Produtos de <?php echo $company['name']; ?></h1>
     </div>
     <table class="table table-bordered">
@@ -97,12 +96,12 @@ $company = getCompany($_GET['company']);
         </tbody>
     </table>
 </div>
-<div id="newOrder" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalUpdate" aria-hidden="true">
+<div id="favorite" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Favorito" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
-                <h4 class="modal-title" id="modalUpdate">Pedido</h4>
+                <h4 class="modal-title" id="Favorito">Favoritos</h4>
             </div>
             <div class="modal-body"></div>
         </div>

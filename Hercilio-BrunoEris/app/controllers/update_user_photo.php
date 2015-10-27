@@ -76,14 +76,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     global $conn;
                     if ($stmt = $conn->prepare("UPDATE users SET user_profile_photo=? WHERE user_email=?")) {
                         $stmt->bind_param("ss", $outputFilename, $_SESSION['email']);
-                        $stmt->execute();
-                        $result = $stmt->affected_rows;
-                        $_SESSION['photo'] = $outputFilename;
-                        echo '
-                        <div id="atualizarFoto" class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            Imagem atualizada com sucesso!
-                        </div>';
+                        if($stmt->execute()){
+                            echo '
+                            <div id="atualizarFoto" class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                Imagem atualizada com sucesso!
+                            </div>';
+                            $_SESSION['photo'] = $outputFilename;
+                        }
+                        else{
+                            echo '
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                Falha ao atualizar imagem!
+                            </div>';
+                        }
                     }
                     else{
                         echo "Falha na conexão: ".$conn->error;
