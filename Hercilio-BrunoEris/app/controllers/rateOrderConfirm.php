@@ -1,17 +1,17 @@
 <?php
 include_once("DBConnect.php");
-include_once("session_company.php");
-function alreadySent($id){
+include_once("session_user.php");
+function alreadyRated($id){
     global $conn;
-    if ($stmt = $conn->prepare("SELECT `orde_status` FROM `orders` WHERE `orde_id`=? AND `orde_status` > 0")) {
+    if ($stmt = $conn->prepare("SELECT `orde_status` FROM `orders` WHERE `orde_id`=? AND `orde_stars` IS NOT NULL")) {
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->store_result();
         if($stmt->num_rows != 0){
             echo '
-            <div class="alert alert-info alert-modal" role="alert">
+            <div class="alert alert-info" id="orderSuccess" role="alert">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
-                Pedido enviado anteriormente.
+                Pedido avaliado anteriormente.
             </div>';
             return true;
         }
@@ -21,7 +21,7 @@ function alreadySent($id){
     }
     else{
         echo '
-        <div class="alert alert-danger alert-modal" role="alert">
+        <div class="alert alert-danger" id="orderSuccess" role="alert">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
             Falha na conexão: '.$conn->error.'
         </div>';
@@ -29,40 +29,45 @@ function alreadySent($id){
     }
 }
 
-function sendOrder($id){
+function rateOrder($order, $rate){
     global $conn;
-    if ($stmt = $conn->prepare("UPDATE `orders` SET `orde_status`=1 WHERE `orde_id`=?")) {
-        $stmt->bind_param("i", $id);
+    if ($stmt = $conn->prepare("UPDATE `orders` SET `orde_stars`=?, `orde_status`=3 WHERE `orde_id`=?")) {
+        $stmt->bind_param("ii", $rate, $order);
         $stmt->execute();
         $stmt->store_result();
         if($stmt->affected_rows != 1){
             echo '
-            <div class="alert alert-warning alert-modal" role="alert">
+            <div class="alert alert-warning" id="orderSuccess" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
-                Falha ao tentar enviar pedido.</div>';
+                Falha ao tentar avaliar pedido.</div>';
             return false;
         }
         else{
             echo '
-            <div class="alert alert-success alert-modal" role="alert">
+            <div class="alert alert-success" id="orderSuccess" role="alert">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
-                Pedido ('.$id.') enviado com sucesso!
+                Pedido ('.$order.') avaliado com sucesso!
             </div>';
             return true;
         }
     }
     else{
         echo '
-        <div class="alert alert-danger alert-modal" role="alert">
+        <div class="alert alert-danger"  id="orderSuccess"role="alert">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
             Falha na conexão: '.$conn->error.'
         </div>';
     }
 }
-
-$check = alreadySent($_GET['order']);
-if($check === false){
-    sendOrder($_GET['order']);
+if(isset($_POST['order'])){
+  $check = alreadyRated($_POST['order']);
+}
+else{
+  echo "ERRO FATAL";
+  exit;
+}
+if($check === false && isset($_POST['order']) && isset($_POST['rate'])){
+    rateOrder($_POST['order'], $_POST['rate']);
 }
  ?>

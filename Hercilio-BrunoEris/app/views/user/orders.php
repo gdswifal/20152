@@ -2,19 +2,20 @@
 include_once("../../controllers/DBConnect.php");
 include_once("../../controllers/session_user.php");
 ?>
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
     <h1>Pedidos de <?php echo $_SESSION['name']; ?></h1>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Empresa</th>
-                <th>Pedido</th>
-                <th>Descrição</th>
-                <th>Quantidade</th>
-                <th>Preço</th>
-                <th>Status</th>
-                <th>Avaliação</th>
-                <th>Endereço de entrega</th>
+                <th class="text-center">Empresa</th>
+                <th class="text-center">Pedido</th>
+                <th class="text-center">Descrição</th>
+                <th class="text-center">Qtd.</th>
+                <th class="text-center">Preço</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Avaliação</th>
+                <th class="text-center">Endereço de entrega</th>
+                <th class="text-center">Opções</th>
             </tr>
         </thead>
         <tbody>
@@ -25,79 +26,133 @@ include_once("../../controllers/session_user.php");
 <?php
 function getOrders($userID){
     global $conn;
-    if ($stmtOrders = $conn->prepare("SELECT orde_id, Companies_comp_id, orde_price, orde_status, orde_stars, orde_address FROM orders WHERE Users_user_id=? ORDER BY orde_id DESC")) {
+    if ($stmtOrders = $conn->prepare("SELECT o.`orde_id`, o.`Companies_comp_id`, o.`orde_price`, o.`orde_status`, o.`orde_stars`, o.`orde_address`, ohp.`Products_prod_id`, p.`prod_description`, p.`prod_price`, c.`comp_name` FROM orders o, orders_has_products ohp, products p, companies c WHERE o.`Users_user_id`=? AND ohp.`Orders_orde_id`=o.`orde_id` AND p.`prod_id`=ohp.`Products_prod_id` AND c.`comp_id`=o.`Companies_comp_id` ORDER BY o.`orde_id` DESC")) {
         $stmtOrders->bind_param("i", $userID);
         $stmtOrders->execute();
-        $stmtOrders->bind_result($orderID, $companyID, $price, $status, $stars, $address);
+        $stmtOrders->bind_result($orderID, $orderCompanyID, $orderPrice, $orderStatus, $orderStars, $orderAddress, $productID, $productDescription, $productPrice, $compName);
         $stmtOrders->store_result();
         while ($stmtOrders->fetch()){
-            if ($stmtFK = $conn->prepare("SELECT Orders_Companies_comp_id, Products_prod_id FROM orders_has_products WHERE Orders_orde_id=?")) {
-                $stmtFK->bind_param("i", $orderID);
-                $stmtFK->execute();
-                $stmtFK->bind_result($companyID, $productID);
-                $stmtFK->store_result();
-                $stmtFK->fetch();
-                $resultFK = $stmtFK->num_rows;
-                //echo "Resultado orders: $resultFK";
-                if($resultFK == 1){
-                    if ($stmtProduct = $conn->prepare("SELECT prod_description, prod_price FROM products WHERE prod_id=?")) {
-                        $stmtProduct->bind_param("i", $productID);
-                        $stmtProduct->execute();
-                        $stmtProduct->bind_result($productDescription,$productPrice);
-                        $stmtProduct->store_result();
-                        $stmtProduct->fetch();
-                        $resultProduct = $stmtProduct->num_rows;
-                        //echo "<br>Resultado products: $resultProduct";
-                        if($resultProduct == 1){
-                            $details['description'] = $productDescription;
-                            $details['price_unit'] = $productPrice; //Preço do pedido dividido pelo preço do produto vai dar a quantidade
-                        }
-                        else{
-                            echo "Falha ao obter descrição do produto.";
-                            return false;
-                        }
-                    }
-                    if ($stmtCompany = $conn->prepare("SELECT comp_name FROM companies WHERE comp_id=?")) {
-                        $stmtCompany->bind_param("i", $companyID);
-                        $stmtCompany->execute();
-                        $stmtCompany->bind_result($companyName);
-                        $stmtCompany->store_result();
-                        $stmtCompany->fetch();
-                        $resultCompany = $stmtCompany->num_rows;
-                        //echo "<br>Resultado companies: $resultCompany";
-                        if($resultCompany == 1){
-                            $details['company_name'] = $companyName;
-                        }
-                        else{
-                            echo "Falha ao obter nome da empresa.";
-                            return false;
-                        }
-                    }
-                }
-                else{
-                    echo "Falha ao obter detalhes do pedido.";
-                    return false;
-                }
-            }
-            else{
-                echo "Falha na conexão: ".$conn->error;
-            }
-            echo "<tr>\n
-            <td>".$details['company_name']."</td>\n
-            <td>$orderID</td>\n
-            <td>".$details['description']."</td>\n
-            <td>".($price/$details['price_unit'])."</td>\n
-            <td>$price</td>\n
-            <td>$status</td>\n
-            <td>$stars ou AVALIAR (operador ternário)</td>\n
-            <td>$address</td>\n
-            </tr>";
-            //<a class=\"btn btn-primary btn-xs link_ajax\" href=\"../../controllers/newOrder.php?user=".$_SESSION['id']."&product=$id&company=".$_GET['company']."\" role=\"button\">Pedir</a>
+            $showReceiveOption = $orderStatus;
+            $statusClass = getStatusClass($orderStatus);
+            $orderStatus = getStatus($orderStatus);
+            $orderStars = getStars($orderStars);
+            echo "<tr class=\"$statusClass\">\n
+            <td>$compName</td>\n
+            <td class=\"text-center\">$orderID</td>\n
+            <td>$productDescription</td>\n
+            <td class=\"text-center\">".($orderPrice/$productPrice)."</td>\n
+            <td class=\"text-right\">R$ ".number_format($orderPrice, 2, ',', ' ')."</td>\n
+            <td class=\"text-center\">$orderStatus</td>\n
+            <td class=\"text-center\">$orderStars</td>\n
+            <td>$orderAddress</td>\n";
+            echo getOption($showReceiveOption, $orderID);
+            echo "</tr>";
         }
     }
     else{
         echo "Falha na conexão: ".$conn->error;
     }
 }
-
+function getStatus($id){
+    switch ($id) {
+        case 0:
+            return "Aberto";
+            break;
+        case 1:
+            return "Enviado";
+            break;
+        case 2:
+            return "Recebido";
+            break;
+        default:
+            return "Avaliado";
+            break;
+    }
+}
+function getStatusClass($id){
+    switch ($id) {
+        case 0:
+            return "warning";
+            break;
+        case 1:
+            return "info";
+            break;
+        case 2:
+            return "success";
+            break;
+        case 3:
+            return "";
+            break;
+        default:
+            return "ERRO";
+            break;
+    }
+}
+function getStars($id){
+    switch ($id) {
+        case 0:
+            return "Pendente";
+            break;
+        case 1:
+            return "<span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>";
+            break;
+        case 2:
+            return "<span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>";
+            break;
+        case 3:
+            return "<span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>";
+            break;
+        case 4:
+            return "<span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star-empty\" aria-hidden=\"true\"></span>";
+            break;
+        case 5:
+            return "<span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>
+            <span class=\"glyphicon glyphicon-star\" aria-hidden=\"true\"></span>";
+            break;
+        default:
+            return "ERRO!";
+            break;
+    }
+}
+function getOption($status, $order){
+    switch ($status) {
+        case 0:
+            return "<td class=\"text-center\"><a class=\"btn btn-danger btn-xs\" href=\"../../controllers/cancelOrder.php?order=$order\" role=\"button\" data-toggle=\"modal\" data-target=\"#order\">Cancelar</a></td>\n";
+            break;
+        case 1:
+            return "<td class=\"text-center\"><a class=\"btn btn-success btn-xs\" href=\"../../controllers/receiveOrder.php?order=$order\" role=\"button\" data-toggle=\"modal\" data-target=\"#order\">Recebi</a></td>\n";
+            break;
+        case 2:
+            return "<td class=\"text-center\"><a class=\"btn btn-info btn-xs link_ajax\" href=\"../../controllers/rateOrder.php?order=$order\" role=\"button\">Avaliar</a></td>\n";
+            break;
+        default:
+            return "<td></td>";
+            break;
+    }
+}
 ?>
+<div id="order" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Favorito" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"></div>
+    </div>
+</div>
+<script src="../../assets/js/alert_modal.js"></script>
