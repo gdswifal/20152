@@ -61,17 +61,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     if(@imagecreatefromjpeg($target)){
                         $tempImage = imagecreatefromjpeg($target);
                         header("Content-Type: image/jpg");
+                        imagecopyresampled($tempTarget, $tempImage, 0, 0, 0, 0, $square, $square, $width, $height) or die('Problema ao redimensionar imagem JPG.');
+                        imagejpeg($tempTarget, $target, 100);
                     }elseif(@imagecreatefrompng($target)){
                         $tempImage = imagecreatefrompng($target);
+                        imagealphablending($tempTarget, false);
+                        $colorTransparent = imagecolorallocatealpha($tempTarget, 0, 0, 0, 0x7fff0000);
+                        imagefill($tempTarget, 0, 0, $colorTransparent);
+                        imagesavealpha($tempTarget, true);
                         header("Content-Type: image/png");
+                        imagecopyresampled($tempTarget, $tempImage, 0, 0, 0, 0, $square, $square, $width, $height) or die('Problema ao redimensionar imagem PNG.');
+                        imagepng($tempTarget,$target) or die('Problema ao salvar imagem PNG');
                     }elseif(@imagecreatefromgif($target)){
                         $tempImage = imagecreatefromgif($target);
                         header("Content-Type: image/gif");
+                        imagecopyresampled($tempTarget, $tempImage, 0, 0, 0, 0, $square, $square, $width, $height) or die('Problema ao redimensionar imagem GIF.');;
+                        imagegif($tempTarget, $target, 100);
                     }else{
                         echo "Falha na conversão da imagem!";
                     }
-                    imagecopyresampled($tempTarget, $tempImage, 0, 0, 0, 0, $square, $square, $width, $height);
-                    imagejpeg($tempTarget, $target, 100);
 
                     global $conn;
                     if ($stmt = $conn->prepare("UPDATE users SET user_profile_photo=? WHERE user_email=?")) {
