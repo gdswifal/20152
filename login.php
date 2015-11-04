@@ -9,10 +9,10 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Login - Sistema Redenção</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
@@ -34,9 +34,9 @@
         <form method="POST" action="valida.php">
         <h2 class="form-signin-heading">Login</h2>
         <label>Usuário</label>
-        <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Digite seu usuário..." required="" autofocus="">
+        <input type="text" name="usuario" class="form-control" placeholder="Digite seu usuário..." required="" autofocus="">
         <label>Senha</label>
-        <input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha..." required="">
+        <input type="password" name="senha" class="form-control" placeholder="Digite sua senha..." required="">
         <div class="checkbox">
         <label><input type="checkbox" value="Lembre-me"> Lembre-me</label>
         </div>
@@ -49,7 +49,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
   
 
 </body>

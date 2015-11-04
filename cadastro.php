@@ -4,11 +4,11 @@ $usuario = $_POST['usuario'];
 $senha = ($_POST['senha']);
 $connect = mysql_connect('localhost','root','');
 $db = mysql_select_db('gdsw_projeto');
-$query_select = "SELECT usuario FROM usuarios WHERE usuario = '$usuario'";
+$query_select = "SELECT usuario FROM usuarios WHERE usuario = '".$usuario."'";
 $select = mysql_query($query_select,$connect);
 $array = mysql_fetch_array($select);
 $logarray = $array['usuario'];
- 
+
     if($usuario == "" || $usuario == null){
         echo"<script language='javascript' type='text/javascript'>alert('O campo login deve ser preenchido');window.location.href='cadastro.html';</script>";
  
@@ -19,7 +19,7 @@ $logarray = $array['usuario'];
                 die();
  
             }else{
-                $query = "INSERT INTO usuarios (usuario,senha) VALUES ('$usuario','$senha')";
+                $query = "INSERT INTO usuarios (usuario,senha,tipo) VALUES ('".$usuario."','".$senha."',1)";
                 $insert = mysql_query($query,$connect);
                  
                 if($insert){
