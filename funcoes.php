@@ -10,15 +10,24 @@
     echo $remover;
     
     remover($remover);
-
     
     }
     function remover($remover){
         $sql = mysql_query("delete from membros where id = '$remover'");
         header("Location: membros/listar.php");
     }
-    function removerevento($removerevento){
-        $sql = mysql_query("delete from eventos where id = '$removerevento'");
+    
+    @$eventoremover = $_GET['eventoremover'];
+    
+    if(empty($eventoremover)){
+    
+    }else{
+    echo $eventoremover;
+    
+    remover($eventoremover);
+    }
+    function removerevento($eventoremover){
+        $sql = mysql_query("delete from eventos where id = '$eventoremover'");
         header("Location: agenda/agenda.php");
     }
 
@@ -91,7 +100,7 @@
             $tipoevento = mysql_query("select tipo from tipo_evento where id = '$registroevento[5]'");
             $resultevento = mysql_result($tipoevento,0);
             echo "<td>" . $resultevento. "</td>";
-            echo "<td><a href=../funcoes.php?removeevento=$registroevento[0]>Remover</a></td></tr>";
+            echo "<td><a href=../funcoes.php?eventoremover=$registroevento[0]>Remover</a></td></tr>";
         }
         echo "</table>";
     }

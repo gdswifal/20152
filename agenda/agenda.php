@@ -1,3 +1,8 @@
+<?php
+include("../seguranca.php");
+protegePagina();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,6 +54,7 @@
             <li><a href="../membros/listar.php">Membros</a></li>
             <li class="active"><a href="agenda.php">Agenda</a></li>
             <li><a href="../galeriafotos/galeriafotos.php">Galeria de Fotos</a></li>
+            <li><a href="logout.php">Sair</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -63,19 +69,19 @@
 			
 		?>
 		
-		<div class="btn btn-default" id="butao" onclick="mostrar()">
+		<div class="btn btn-default" id="butao" onclick="mostrarevento()">
 				<h5>Cadastrar Evento</h5>
 			</div>		
 		<br><br>
-      <div class="exibe" id="teste">
+      <div class="exibe" id="testeevento">
 		
 		<form method="POST" action="cadastroevento.php">
 		
 		<label>Descricao do evento:</label>
 		<input type="text" name="descricao"><br>
-		<label>Hora de início do evento (de 00 a 24):</label>
+		<label>Hora de início do evento:</label>
 		<input type="text" name="hora"><br>
-		<label>Data do evento (de 01 a 31):</label>
+		<label>Data do evento (AAAA-MM-DD):</label>
 		<input type="text" name="data"><br>
 		<label>Local do evento:</label>
 		<input type="text" name="local"><br>

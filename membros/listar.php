@@ -1,3 +1,8 @@
+<?php
+include("../seguranca.php");
+protegePagina();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -49,6 +54,7 @@
             <li class="active"><a href="listar.php">Membros</a></li>
             <li><a href="../agenda/agenda.php">Agenda</a></li>
             <li><a href="galeriafotos/galeriafotos.php">Galeria de Fotos</a></li>
+            <li><a href="logout.php">Sair</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
