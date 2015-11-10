@@ -9,15 +9,18 @@
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+                                
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
 
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="bootstrap/css/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,13 +30,15 @@
     <![endif]-->
   </head>
 <body>
-<form method="POST" action="cadastro.php">
-<label>Login:</label>
-<input type="text" name="usuario"><br>
-<label>Senha:</label>
-<input type="password" name="senha"><br>
-<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
-</form>
+    
+    <form action="cadastro.php" method="post">
+        <h2 class="form-signin-heading">Cadastro de usuário</h2>
+            <label>Login:</label>
+            <input type="text" name="usuario" class="form-control" placeholder="Digite um nome de usuário..." required="" autofocus="">
+            <label>Senha:</label>
+            <input type="password" name="senha" class="form-control" placeholder="Digite sua senha..." required="">
+            <input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+    </form>
 </body>
 </html>
 

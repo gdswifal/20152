@@ -9,15 +9,18 @@
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+      
+    <!-- Custom styles for this template -->
+<link href="signin.css" rel="stylesheet">
 
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
 
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,15 +32,15 @@
 <body>
 <form method="POST" action="cadastromembros.php">
 <label>Nome:</label>
-<input type="text" name="nome"><br>
+<input type="text" name="nome" class="form-control" placeholder="Nome do membro" required="" autofocus="">
 <label>Idade:</label>
-<input type="text" name="idade"><br>
+<input type="text" name="idade" class="form-control" placeholder="Idade do membro" required="" autofocus="">
 <label>Telefone:</label>
-<input type="text" name="telefone"><br>
+<input type="text" name="telefone" class="form-control" placeholder="8888-8888" required="" autofocus="">
 <label>Extensão Vocal:</label>
-<input type="text" name="extvocal"><br>
+<input type="text" name="extvocal" class="form-control" placeholder="Extensão vocal" required="" autofocus="">
 <label>Endereço:</label>
-<input type="text" name="endereco"><br>
+<input type="text" name="endereco" class="form-control" placeholder="Rua, número" required="" autofocus="">
 <input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
 </form>
 </body>

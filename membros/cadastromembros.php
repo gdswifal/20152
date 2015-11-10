@@ -1,11 +1,27 @@
 <?php
- 
-$nome = $_POST['nome'];
-$idade = ($_POST['idade']);
-$telefone = $_POST['telefone'];
-$idade = ($_POST['idade']);
-$endereco = $_POST['endereco'];
-$extvocal = $_POST['extvocal'];
+    
+    include "../conexaoBanco.php";
+
+    $nome = $_POST['nome'];
+    $idade = $_POST['idade'];
+    $telefone = $_POST['telefone'];
+    $idade = $_POST['idade'];
+    $endereco = $_POST['endereco'];
+    $extvocal = $_POST['extvocal'];
+    
+    $sql = mysql_query("insert into membros(nome,fone,endereco,idade,ex_vocal)values('$nome','$telefone','$endereco','$idade','$extvocal')");
+
+    if($sql){
+        header("Location: listar.php");
+    }else{
+        echo "Não foi possível efetuar o cadastro";
+    }
+
+
+
+
+
+/*
 $connect = mysql_connect('localhost','root','');
 $db = mysql_select_db('gdsw_projeto');
 $query_select = "SELECT nome FROM membros WHERE nome = '".$nome."'";
@@ -40,6 +56,7 @@ if($extvocal == "" || $extvocal == null){
                 }
             }
         }
+        */
 ?>
 
 
