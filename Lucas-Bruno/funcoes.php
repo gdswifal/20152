@@ -4,31 +4,34 @@
     
     @$remover = $_GET['remove'];
     
-    if(empty($remover)){
+    @$tipo = $_GET['param'];
+
+    if(empty($tipo) && empty($remover)){
     
     }else{
-    echo $remover;
     
-    remover($remover);
-    
+        if($tipo == "memb"){
+            removerMembro($remover);
+        }
+        
+        else if($tipo == "event"){
+            removerEvento($remover);
+        } 
+        
+        else {
+            header("Location: agenda/agenda.php");
+        }
+        
     }
-    function remover($remover){
+  
+    function removerMembro($remover){
         $sql = mysql_query("delete from membros where id = '$remover'");
         header("Location: membros/listar.php");
     }
     
-    @$eventoremover = $_GET['eventoremover'];
-    
-    if(empty($eventoremover)){
-    
-    }else{
-    echo $eventoremover;
-    
-    remover($eventoremover);
-    }
-    function removerevento($eventoremover){
-        $sql = mysql_query("delete from eventos where id = '$eventoremover'");
-        header("Location: agenda/agenda.php");
+    function removerEvento($remover){
+         $sql = mysql_query("delete from eventos where id = '$remover'");
+         header("Location: agenda/agenda.php");
     }
 
     function verificaUsuariosCadastrados($usuario){
@@ -79,7 +82,7 @@
             $tipo = mysql_query("select tipo from ext_vocal where id = '$registro[5]'");
             $result = mysql_result($tipo,0);
             echo "<td>" . $result. "</td>";
-            echo "<td><a href=../funcoes.php?remove=$registro[0]>Remover</a></td></tr>";
+            echo "<td><a href=../funcoes.php?remove=$registro[0]&param=memb>Remover</a></td></tr>";
         }
         echo "</table>";
     }
@@ -100,7 +103,7 @@
             $tipoevento = mysql_query("select tipo from tipo_evento where id = '$registroevento[5]'");
             $resultevento = mysql_result($tipoevento,0);
             echo "<td>" . $resultevento. "</td>";
-            echo "<td><a href=../funcoes.php?eventoremover=$registroevento[0]>Remover</a></td></tr>";
+            echo "<td><a href=../funcoes.php?remove=$registroevento[0]&param=event>Remover</a></td></tr>";
         }
         echo "</table>";
     }

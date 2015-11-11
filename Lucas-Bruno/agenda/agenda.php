@@ -13,7 +13,7 @@ protegePagina();
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>Sistema Redenção</title>
+    <title>Sistema Redenção - Agenda</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -23,11 +23,11 @@ protegePagina();
 <!-- Optional theme -->
 <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="../bootstrap/css/estilos.css">
-<link rel="stylesheet" href="css.css">
+<link rel="stylesheet" href="cssagenda.css">
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="../bootstrap/js/bootstrap.min.js"></script>
-<script src="js.js" type="text/javascript"></script>
+<script src="jsagenda.js" type="text/javascript"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,10 +51,10 @@ protegePagina();
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="../index.php">Início</a></li>
-            <li class="active"><a href="listar.php">Membros</a></li>
-            <li><a href="../agenda/agenda.php">Agenda</a></li>
-            <li><a href="galeriafotos/galeriafotos.php">Galeria de Fotos</a></li>
-            <li><a href="logout.php">Sair</a></li>
+            <li><a href="../membros/listar.php">Membros</a></li>
+            <li class="active"><a href="agenda.php">Agenda</a></li>
+            <li><a href="../galeriafotos/galeriafotos.php">Galeria de Fotos</a></li>
+            <li><a href="../logout.php">Sair</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -65,34 +65,61 @@ protegePagina();
 		<?php
 			include "../funcoes.php";
 			
-			exibirUsuariosBanco();
+			exibirUsuariosBancoAgenda();
 			
 		?>
-		
-		<div class="btn btn-default" id="butao" onclick="mostrar()">
-				<h5>Cadastrar Membro</h5>
+          
+        <div class="btn btn-default" id="butao" onclick="mostrarevento()">
+				<h5 id="mostrarevento">Cadastrar Evento</h5>
 			</div>		
-		<br><br>
-      <div class="exibe" id="teste">
 		
-		<form method="POST" action="cadastromembros.php">
-		
-		<label>Nome:</label>
-		<input type="text" name="nome"><br>
-		<label>Telefone:</label>
-		<input type="text" name="telefone"><br>
-		<label>Endereço:</label>
-		<input type="text" name="endereco"><br>
-		<label>Idade:</label>
-		<input type="text" name="idade"><br>
-		<label>Extensão Vocal:</label>
-		<select name="extvocal"><br>
-			<option value="1">Soprano</option>
-			<option value="2">Contralto</option>
-			<option value="3">Baixo</option>
-			<option value="4">Tenor</option>
-		</select><br>
-		<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+          <br><br>
+          
+      <div class="exibe" id="eventos" >
+
+		<form class="form-horizontal" method="POST" action="cadastroevento.php">
+		<div class="form-group">
+            <label for="Descricao" class="col-sm-2 control-label">Descrição:</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Descrição do evento">
+        </div>
+        </div>
+            
+            <div class="form-group">
+            <label for="Hora" class="col-sm-2 control-label">Horário de Início do evento:</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" name="hora" id="hora" placeholder="HH:MM">
+        </div>
+        </div>  
+        
+        <div class="form-group">
+            <label for="Data" class="col-sm-2 control-label">Data do evento:</label>
+        <div class="col-sm-2">
+        <input type="text" class="form-control" name="data" id="data" placeholder="AAAA-MM-DD">
+        </div>
+        </div>    
+            
+        <div class="form-group">
+            <label for="local" class="col-sm-2 control-label">Local:</label>
+        <div class="col-sm-1">
+            <input type="text" class="form-control" name="local" id="local" placeholder="Local do evento">
+        </div>
+        </div>
+            
+            
+        <div class="form-group">
+            <label for="Tipo_do_evento" class="col-sm-2 control-label">Tipo do evento:</label>
+        <div class="col-sm-2">
+            <select  class="form-control" name="tipoevento"><br>
+			<option class="form-control" value="1">Ensaio</option>
+			<option class="form-control" value="2">Reunião</option>
+			<option class="form-control" value="3">Evento Local</option>
+			<option class="form-control" value="4">Evento Fora</option>
+		</select>
+        </div>
+        </div>
+            
+		<input class="btn btn-default" type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
 		
 		</form>
 		
@@ -102,6 +129,7 @@ protegePagina();
 	  
 	  
 	  </div>
+			
       
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
