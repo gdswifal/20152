@@ -1,0 +1,70 @@
+--
+-- Cria o banco de dados e acessa o mesmo
+--
+CREATE DATABASE GDSW_PROJETO DEFAULT CHARSET=latin1;
+
+--
+-- Cria a tabela TIPO_USUARIO
+--
+CREATE TABLE TIPO_USUARIO (
+	ID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,	-- Código interno (PK)
+	TIPO VARCHAR(32) NOT NULL,			-- Descrição
+	PRIMARY KEY(ID)					-- Define o campo ID como PK (Primary Key)
+);
+
+--
+-- Cria a tabela USUARIOS
+--
+CREATE TABLE USUARIOS (
+	ID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,		-- ID usuário (PK)
+	LOGIN VARCHAR(64) NOT NULL UNIQUE,			-- Nome com até 64 caracteres
+	SENHA VARCHAR(9) NOT NULL,				-- Telefone, podendo ser nulo caso não tenha
+	TIPO INT NOT NULL,					-- Tipo de usuário
+	PRIMARY KEY(ID)						-- Define o campo ID como PK (Primary Key)
+	FOREIGN KEY(TIPO) REFERENCES TIPO_USUARIO(ID)		-- Referencia a tabela TIPO_USUARIOS
+);
+
+--
+-- Cria a tabela MEMBROS
+--
+CREATE TABLE MEMBROS (
+	ID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,		-- ID dos membros (PK)
+	NOME VARCHAR(64) NOT NULL,				-- Nome com até 64 caracteres
+	FONE INTEGER(9) UNSIGNED NOT NULL,			-- Telefone de contato
+	EMAIL VARCHAR(64) NULL,					-- E-mail dos membros
+	EX_VOCAL INT NOT NULL,					-- Tipo da extensão vocal
+	PRIMARY KEY(ID),					-- Define o campo ID como PK (Primary Key)
+	FOREIGN KEY(EX_VOCAL) REFERENCES EXT_VOCAL(ID),		-- Cria o relacionamento (FK) com a tabela TIPO
+);								
+
+--
+-- Cria a tabela EXT_VOCAL
+--
+CREATE TABLE EXT_VOCAL (
+	ID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,		-- Código interno (PK)
+	TIPO VARCHAR(64) NOT NULL,				-- Nome com até 64 caracteres
+	PRIMARY KEY(ID)						-- Define o campo ID como PK (Primary Key)
+);
+
+--
+-- Cria a tabela TIPO_EVENTO
+--
+CREATE TABLE TIPO_EVENTO (
+	ID INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,		-- Código interno (PK)
+	TIPO INTEGER UNSIGNED NOT NULL,				-- Código do tipo
+	PRIMARY KEY(ID),					-- Define o campo CODIGO como PK (Primary Key)
+);
+
+--
+-- Cria a tabela EVENTOS
+--
+CREATE TABLE EVENTOS (
+	ID INT UNSIGNED NOT NULL AUTO_INCREMENT,		-- ID do evento
+	LOCAL VARCHAR(64) NOT NULL,				-- Local do evento
+	HORA_DATA DATETIME,					-- Data e hora do evento
+	PARTICIPANTES INT UNSIGNED NOT NULL,			-- Participantes do evento
+	TIPO INT UNSIGNED NOT NULL,				-- Tipo do evento
+	PRIMARY KEY(ID),					-- Define ID como chave primária
+	FOREIGN KEY(TIPO) REFERENCES TIPO_EVENTO(ID)		-- Cria o relacionamento (FK) com a tabela TIPO_EVENTO
+);
+

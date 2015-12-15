@@ -1,0 +1,53 @@
+<?php
+include("seguranca.php");
+protegePagina();
+?>
+
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Cadastro de usuário</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+      
+    <!-- Custom styles for this template -->
+<link href="signin.css" rel="stylesheet">
+
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+<form method="POST" action="cadastromembros.php">
+<label>Nome:</label>
+<input type="text" name="nome" class="form-control" placeholder="Nome do membro" required="" autofocus="">
+<label>Idade:</label>
+<input type="text" name="idade" class="form-control" placeholder="Idade do membro" required="" autofocus="">
+<label>Telefone:</label>
+<input type="text" name="telefone" class="form-control" placeholder="8888-8888" required="" autofocus="">
+<label>Extensão Vocal:</label>
+<input type="text" name="extvocal" class="form-control" placeholder="Extensão vocal" required="" autofocus="">
+<label>Endereço:</label>
+<input type="text" name="endereco" class="form-control" placeholder="Rua, número" required="" autofocus="">
+<input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+</form>
+</body>
+</html>
+
