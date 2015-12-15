@@ -1,0 +1,50 @@
+<div class="row center">
+
+  <h1 class="header center orange-text">SIMPLE DESK</h1>
+
+  <form class="col s12" ng-controller="UserCreateCtrl" ng-submit="createUser()">
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="name" type="text" ng-model="user.name" class="validate" >
+        <label for="name">Nome</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="text" ng-model="user.email" class="validate" >
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="password" type="password" class="validate"  ng-model="user.password">
+        <label for="password">Password</label>
+      </div>
+    </div>
+
+    </br></br>
+
+    <button class="waves-effect waves-light btn">
+      REGISTRAR
+    </button>
+
+    <a class="waves-effect waves-light btn orange" ng-href="#/login">
+      CANCELAR
+    </a>
+
+  </form>
+</div>
+
+
+
+<!--   <div class="list card">
+
+    <a href="#" class="item item-icon-left">
+      <i class="icon ion-home"></i>
+      <h4 >{{ alert.title }}</h4>
+      {{ alert.detail}}
+    </a>
+
+  </div>   -->
